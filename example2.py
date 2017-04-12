@@ -115,9 +115,9 @@ def getCI95(X):
 def plotGroupAverages(ax, series):
     masked = np.ma.masked_invalid(series)
     mean = masked.mean(axis=0)
-    ci95 = getCI95(masked)
+    error = getSEM(masked) # Reviewer pointed inconsistency of CI95 with example #3
     midpoints = [getPhaseMidtime(phase) for phase in PHASES]
-    ax.errorbar(midpoints, mean * 100, yerr=ci95 * 100,
+    ax.errorbar(midpoints, mean * 100, yerr=error * 100,
                 linewidth=3, elinewidth=2,
                 marker='o', markeredgecolor="blue",
                 markersize=10,
