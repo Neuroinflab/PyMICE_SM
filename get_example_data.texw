@@ -1,0 +1,8 @@
+Before the examples can be run, the example data have to be
+saved to the current working directory. This can be
+done from within PyMICE:
+<<term=True, results='verbatim'>>=
+import pymice as pm
+pm.getTutorialData(quiet=True)
+@
+

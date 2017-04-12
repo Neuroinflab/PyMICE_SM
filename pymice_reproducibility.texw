@@ -1,0 +1,32 @@
+<<echo=False,results='hidden'>>=
+import numpy as np
+import pymice as pm
+import pweave
+import matplotlib
+import dateutil
+import pytz
+import sys
+
+
+def pmVersion():
+    return pmTemplate().format(v=pm.__version__)
+
+def pmTemplate():
+    return PM_TEMPLATE_HEAD +  pmTemplateTail()
+
+def isPmVersionKnown():
+    return pm.__version__ in PM_KNOWN_VERSIONS
+
+PM_TEMPLATE_HEAD = '\emph{{PyMICE}} v.~{v}'
+PM_KNOWN_VERSIONS = {'0.2.3', '0.2.4', '0.2.5', '1.0.0'}
+
+def pmTemplateTail():
+  return '~\cite{{pymice{v}}}' if isPmVersionKnown() else ''
+
+@
+All presented results may be reproduced with the \emph{Pweave} tool~\cite{Pweave,matti_pastell_2016_44683}
+v.~<%= pweave.__version__ %>, an interpreter of \emph{Python} programming
+language v.~<%= '.'.join(map(str, sys.version_info[:3])) %>, <%= pmVersion() %>,
+\emph{NumPy} v.~<%= np.__version__ %>,
+\emph{matplitlib} v.~<%= matplotlib.__version__ %>, \emph{dateutil} v.~<%= dateutil.__version__ %>
+and \emph{pytz} v.~<%= pytz.__version__ %>.~\cite{Wilson2014}

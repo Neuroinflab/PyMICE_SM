@@ -1,0 +1,298 @@
+%%%%%%%%%%%%%%%%%%%%%%% file template.tex %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is a general template file for the LaTeX package SVJour3
+% for Springer journals.          Springer Heidelberg 2010/09/16
+%
+% Copy it to a new file with a new name and use it as the basis
+% for your article. Delete % signs as needed.
+%
+% This template includes a few options for different layouts and
+% content for various journals. Please consult a previous issue of
+% your journal as needed.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% First comes an example EPS file -- just ignore it and
+% proceed on the \documentclass line
+% your LaTeX will extract the file if required
+\begin{filecontents*}{example.eps}
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 19 19 221 221
+%%CreationDate: Mon Sep 29 1997
+%%Creator: programmed by hand (JK)
+%%EndComments
+gsave
+newpath
+  20 20 moveto
+  20 220 lineto
+  220 220 lineto
+  220 20 lineto
+closepath
+2 setlinewidth
+gsave
+  .4 setgray fill
+grestore
+stroke
+grestore
+\end{filecontents*}
+%
+\RequirePackage{fix-cm}
+%
+%\documentclass{svjour3}                     % onecolumn (standard format)
+%\documentclass[smallcondensed]{svjour3}     % onecolumn (ditto)
+\documentclass[smallextended]{svjour3}       % onecolumn (second format)
+%\documentclass[twocolumn]{svjour3}          % twocolumn
+%
+\smartqed  % flush right qed marks, e.g. at end of proof
+%
+\usepackage{graphicx}
+%
+% \usepackage{mathptmx}      % use Times fonts if available on your TeX system
+%
+% insert here the call for the packages your document requires
+%\usepackage{latexsym}
+% etc.
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{upquote,textcomp}
+\usepackage{hyperref}
+\newcommand{\code}[1]{\texttt{#1}}
+
+% Insert the name of "your journal" with
+% \journalname{myjournal}
+%
+\journalname{Behavior Research Methods}
+
+\begin{document}
+
+\title{PyMICE -- a Python library for analysis of IntelliCage data
+%PyMICE -- facilitating reproducible research with IntelliCage system
+%\thanks{Grants or other notes
+%about the article that should go on the front page should be
+%placed here. General acknowledgments should be placed at the end of the article.}
+}
+\subtitle{Supplementary materials}
+
+\titlerunning{Supplementary materials for PyMICE -- a Python library...}        % if too long for running head
+
+\author{Jakub M. Dzik \and
+        Alicja Puścian \and
+        Zofia Mijakowska \and
+        Kasia Radwanska \and
+        Szymon Łęski
+}
+
+%\authorrunning{Short form of author list} % if too long for running head
+
+\institute{J. M. Dzik \and A. Puścian \and S. Łęski \at
+              Department of Neurophysiology, Nencki Institute of Experimental Biology of Polish Academy of Sciences, Warsaw, Poland \\
+%              Tel.: +123-45-678910\\
+%              Fax: +123-45-678910\\
+%              \email{fauthor@example.com}           %  \\
+%             \emph{Present address:} of F. Author  %  if needed
+           \and
+           Z. Mijakowska \and K. Radwanska \at
+              Department of Molecular and Cellular Neurobiology, Nencki Institute of Experimental Biology of Polish Academy of Sciences, Warsaw, Poland
+           \and
+           S. Łęski \at \email{s.leski@nencki.gov.pl}
+}
+
+\date{Received: date / Accepted: date}
+% The correct dates will be entered by the editor
+
+
+\maketitle
+
+\begin{abstract}
+We provide our readers with resources and guidance necessary to reproduce
+the presented results.
+
+%Insert your abstract here. Include keywords, PACS and mathematical
+%subject classification numbers as needed.
+\keywords{Reproducible research \and Literate programming \and Python scripts \and raw data}
+% \PACS{PACS code1 \and PACS code2 \and more}
+% \subclass{MSC code1 \and MSC code2 \and more}
+\end{abstract}
+
+%Your text comes here. Separate text sections with
+\tableofcontents
+\newpage
+
+\section{Introduction}
+In order to meet the standarts of reproducibility and enable a \emph{reproducibility
+review}~\cite{peng2011} we decided to publish the data, scripts, and complete
+source of the article~\cite{buckheit1995,literateProgramming}.  
+
+
+\section{Requirements}
+\input{supplementary_reproducibility}
+
+
+\section{Reproduction of the examples}
+\label{examples}
+
+\subsection{Obtaining the example data}
+\label{examples:data}
+In order to save the example data in the working directory, run the
+\emph{get\_example\_data.py} script:
+\begin{verbatim}
+$ python get_example_data.py
+\end{verbatim}
+
+However, the files are also available as supplementary materials (see
+\ref{data:examples} for details).
+
+\subsection{Example 1}
+\label{examples:1}
+In order to reproduce the 6-line example of data analysis, provide the
+\emph{demo.zip} file (\ref{data:examples:demo}) in the working directory and
+run the \emph{example1.py} script:
+\begin{verbatim}
+$ python example1.py
+\end{verbatim}
+
+
+\subsection{Example 2}
+\label{examples:2}
+To reproduce plot from \emph{Example 2},
+provide the \emph{FVB} dataset (\ref{data:examples:fvb}) in the working
+directory and run the \emph{example2.py} script:
+\begin{verbatim}
+$ python example2.py
+\end{verbatim}
+
+
+\subsection{Example 3}
+\label{examples:3}
+To reproduce plot from \emph{Example 3} (also figure 3A in~\cite{Puscian:2014cu}),
+provide the \emph{C57\_AB} dataset (\ref{data:examples:c57}) in the working
+directory and run the \emph{example3.py} script:
+\begin{verbatim}
+$ python example3.py
+\end{verbatim}
+
+
+\subsection{Example 4}
+\label{examples:4}
+To reproduce plot from \emph{Example 4} provide the \emph{C57\_AB}
+dataset (\ref{data:examples:c57}) in the working directory and run the
+\emph{example4.py} script:
+\begin{verbatim}
+$ python example4.py
+\end{verbatim}
+
+
+\section{Reproduction of the article}
+\label{reproduction}
+To automatically generate a custom version of the article based on reproduced
+results rather than on the results claimed by the authors, perform the following
+procedure: extract the contents of the
+\emph{article\_source.zip} archive to the working directory.
+
+In case the \emph{GNU Make} tool (or similar) is installed in the system, to
+reproduce the article run:
+\begin{verbatim}
+$ make article.pdf
+\end{verbatim}
+
+If \emph{GNU Make} tool is not installed, you need to weave~\cite{literateProgramming}
+the \emph{texw} files.
+It is important to weave \emph{get\_example\_data.texw} as the first file,
+since example data (\ref{data:examples}) are saved in the working directory
+during its weaving.
+
+\begin{verbatim}
+$ pweave -f tex get_example_data.texw
+$ pweave -f tex example1.texw
+$ pweave -f tex example2.texw
+$ pweave -f tex example3.texw
+$ pweave -f tex example4.texw
+$ pweave -f tex pymice_overview.texw
+$ pweave -f tex pymice_reproducibility.texw
+\end{verbatim}
+
+After all files have been weaved, compile the \LaTeX{} source.
+
+\begin{verbatim}
+$ pdflatex article
+$ bibtex article
+$ pdflatex article
+$ pdflatex article
+\end{verbatim}
+
+The \emph{article.pdf} file contains the reproduced article.
+
+
+\section{Description of datasets}
+\subsection{Datasets used in the examples}
+\label{data:examples}
+
+
+\subsubsection{demo.zip}
+\label{data:examples:demo}
+\emph{demo.zip} is a dataset prepared for demonstration purposes.
+It is required by \emph{example1.py} script (\ref{examples:1}).
+
+
+\subsubsection{FVB}
+\label{data:examples:fvb}
+The dataset concerning reward discrimination learning of FVB mice was obtained
+during an ongoing research project and thus has not yet been published. For
+that reason data were preprocessed to both anonimise it and make it more
+suitable for demonstrational purposes. However, it should be stated that
+presented data had actually been acquired with the use of FVB strain.
+
+The dataset consist of one data file
+and experiment timeline:
+\begin{itemize}
+\item \emph{2016-07-20~10.11.11.zip}
+\item \emph{timeline.ini}
+\end{itemize}
+and is required by \emph{example2.py} (\ref{examples:2}).
+
+
+\subsubsection{C57\_AB}
+\label{data:examples:c57}
+The \emph{C57\_AB} dataset was obtained during an actual research
+project~\cite{Puscian:2014cu} and processed to make it suitable for more advanced
+demonstrational purposes. It consist of four data files and experiment
+timeline:
+\begin{itemize}
+\item \emph{2012-08-28~13.44.51.zip}
+\item \emph{2012-08-28~15.33.58.zip}
+\item \emph{2012-08-31~11.46.31.zip}
+\item \emph{2012-08-31~11.58.22.zip}
+\item \emph{timeline.ini}
+\end{itemize}
+and is required by 
+\emph{example3.py} (\ref{examples:3}) and
+\emph{example4.py} (\ref{examples:4}).
+
+
+\subsection{Dataset discussed in the \emph{PyMICE library} section}
+\emph{2014-09-11~14.13.34.zip} is a raw dataset obtained during an actual
+research project by Maria Nalberczak from laboratory of KR.
+
+The discussed 6-hour period starts at 22:00 (\mbox{UTC-08:00})
+\mbox{2014-09-11}.
+For mouse `9' the Analyzer software (v.~2.11.0.0) reports 480 licks less
+than the number counted with PyMICE. The dataset has been inspected
+manually. It seems that if the recorded start time of a nosepoke precedes the
+recorded start time of the related visit, it will be omited by the Analyzer.
+
+\begin{acknowledgements}
+\input{pymice_acknowledgements}
+%If you'd like to thank anyone, place your comments here
+%and remove the percent signs.
+\end{acknowledgements}
+
+% BibTeX users please use one of
+%\bibliographystyle{spbasic}      % basic style, author-year citations
+\bibliographystyle{spmpsci}      % mathematics and physical sciences
+%\bibliographystyle{spphys}       % APS-like style for physics
+\bibliography{pymice,szymonall}%   % name your BibTeX data base
+
+
+\end{document}
+% end of file template.tex
+

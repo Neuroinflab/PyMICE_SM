@@ -1,0 +1,244 @@
+The previous example is a simplified version of an analysis performed to assess place
+memory during the discrimination training, as described in~\citeA{Knapska:2013dj}.
+In this example we present the analysis in more detail, including the 
+estimation of how the mice performance in the discrimination task
+changed over time.
+
+The experimental setup was the following: during the first several days of the experiment mice were adapted to the cage. In this phase water was
+freely available in all corners, at both sides of each corner, and the doors to the bottles were open. Next, in nosepoke adaptation (\emph{NPA}) phase of the
+experiment mice had to perform nosepokes to access the water bottles. The next phase was place preference learning (\emph{PP}). In this phase every mouse
+could access bottles in one corner only. The mice were assigned to different corners as evenly as possible to prevent crowding and learning interference. The final experimental phase
+was the discrimination task (\emph{DISC}). In this phase the mice were presented with two bottles in the same corner to which they were assigned during the \emph{PP} phase. However, in contrast to the \emph{PP} phase, one bottle contained tap water, and the other 10\% sucrose solution (highly motivating reward). As previously, during each visit the access was granted to both bottles. The percentage of visits in which the first nosepoke was performed to the bottle containing reward was calculated as a measure of memory.
+
+We start by loading the data. 
+Note that some technical details not crucial for
+understanding the example (like importing the libraries) are hidden. The full
+code is available at \url{https://github.com/Neuroinflab/PyMICE_SM/blob/examples/example2.py}.
+
+<<echo=False, results='hidden'>>=
+import warnings
+warnings.simplefilter("ignore")
+
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.ticker as mtick
+import matplotlib.dates as mpd
+import pytz
+
+import pymice as pm
+
+@
+
+\begin{samepage} 
+<<echo=True, results='hidden'>>=
+data = pm.Loader('FVB/2016-07-20 10.11.11.zip')
+@
+\end{samepage}
+
+Next, we need to know the start- and end-points of the experimental phases we are interested in.
+We defined these phases in an experiment timeline
+file. The format of this file 
+is a derivative of the \emph{INI} format.
+The necessary information required about a phase are: its name (\emph{PP dark} in the following example), boundaries (\code{start} and \code{end}
+properties) and timezone of the boundaries (\code{tzinfo} property):
+
+\begin{samepage}
+\begin{verbatim}
+[PP dark]
+start = 2016-07-20 12:00
+end = 2016-07-21 00:00
+tzinfo = Etc/GMT-1
+\end{verbatim}
+\end{samepage}
+
+We load the experiment timeline file into a \code{Timeline} object, and define a list of phases of interest.
+
+\begin{samepage}
+<<echo=True, results='hidden'>>=
+timeline = pm.Timeline('FVB/timeline.ini')
+
+PHASES = ['PP dark',     'PP light',
+          'DISC 1 dark', 'DISC 1 light',
+          'DISC 2 dark', 'DISC 2 light',
+          'DISC 3 dark', 'DISC 3 light',
+          'DISC 4 dark', 'DISC 4 light',
+          'DISC 5 dark', 'DISC 5 light']
+@
+\end{samepage}
+
+To analyze the data we define a function \code{getPerformanceMatrix()}
+which returns a matrix of performance (defined as the fraction of first
+nosepokes in the accessible corner which are performed to the rewarded side)
+of all mice in the system. Each row in this matrix contains the performance data 
+of one mouse, and each column corresponds to one phase of the experiment for all mice.
+
+\begin{samepage}
+<<echo=True, results='hidden'>>=
+def getPerformanceMatrix():
+    return [getPerformanceCurve(mouse) for mouse in data.getMice()]
+@
+\end{samepage}
+
+For every mouse the the \code{getPerformanceCurve()} function is called to
+create a row corresponding to the performance of that mouse across subsequent phases.
+
+\begin{samepage}
+<<echo=True, results='hidden'>>=
+def getPerformanceCurve(mouse):
+    return [getPerformance(mouse, phase) for phase in PHASES]
+@
+\end{samepage}
+
+We use the \code{getPerformance()} function to create a list of the mouse's
+performance measures (fraction of first nosepokes in the accessible corner
+which are performed to the rewarded side) in subsequent phases.
+
+\begin{samepage}
+<<echo=True, results='hidden'>>=
+def getPerformance(mouse, phase):
+    start, end = timeline.getTimeBounds(phase)
+    visits = data.getVisits(mice=[mouse], start=start, end=end)
+    accessibleCornerVisits = filter(isToCorrectCorner, visits)
+    return calculatePerformance(accessibleCornerVisits)
+
+def isToCorrectCorner(visit):
+    return visit.CornerCondition > 0
+@
+\end{samepage}
+
+In the \code{getPerformance()} function we obtain all visits performed by the
+mouse during the phase. Visits to the accessible corner are passed to the
+\code{calculatePerformance()} function for further analysis. It is easy to
+filter the visits -- in the IntelliCage experiment design the accessible corner
+was marked as `correct'. Thus visits to the corner have positive value of the
+\code{.CornerCondition} attribute of the \code{Visit} object.
+
+\begin{samepage}
+<<echo=True, results='hidden'>>=
+def calculatePerformance(visits):
+    firstNps = [v.Nosepokes[0] for v in visits if v.Nosepokes]
+    successes = [isToCorrectSide(nosepoke) for nosepoke in firstNps]
+    return successRatio(successes)
+
+def isToCorrectSide(nosepoke):
+    return nosepoke.SideCondition > 0
+@
+\end{samepage}
+
+To calculate the performance we check whether the first nosepoke of every visit
+was to the rewarded side. The rewarded side was marked as `correct'
+in the experiment design. Thus nosepokes to the correct side have positive value of the
+\code{.SideCondition} attribute of the respective \code{Nosepoke} object.
+The side which was rewarded in \emph{DISC} phases was marked as `correct'
+already during the \emph{PP} phases (when both bottles in a
+corner contained the same liquid), so that the relevant fraction 
+can be easily extracted also from the \emph{PP} phases.\\
+Based on the counts of first nosepokes performed to each of 
+the sides we calculate the success ratio (code omitted here).
+
+<<echo=False, results='hidden'>>=
+def successRatio(successes):
+    return np.mean(successes)
+@
+
+With all the functions defined, we obtain the performance matrix and plot it
+averaged across mice in \fig{figureSideDiscrimination} (plotting code omitted here). 
+
+<<echo=False,results='hidden',fig=True,include=False,name='Figure'>>=
+def getTimeBounds(phases):
+  return mpd.date2num(timeline.getTimeBounds(phases))
+
+class DecoratedAxes(object):
+    yticks = range(0, 110, 10)
+
+    def __enter__(self):
+        fig, ax = plt.subplots(figsize=(13, 8))
+
+        #ax.set_title('C57BL/6 - PLACE PREFERENCE LEARNING')
+
+        self.__ax = ax
+        self.__fig = fig
+        self.__setUpAxisY()
+        self.__setUpAxisX()
+        self.__plotDarkPhasesInBackground()
+        self.__plotPercentReferenceLines()
+        
+        ax.plotGroupAverages = plotGroupAverages.__get__(ax, ax.__class__)
+        return ax
+
+    def __setUpAxisY(self):
+        self.__ax.set_ylabel('% of correct responses')
+        self.__ax.set_ylim(min(self.yticks), max(self.yticks))
+        self.__ax.yaxis.set_ticks_position('none')
+        self.__ax.yaxis.set_major_formatter(mtick.FormatStrFormatter("%.0f%%"))
+        self.__ax.set_yticks(self.yticks)
+        
+
+    def __setUpAxisX(self):
+        tzone = pytz.timezone('CET')
+        hours=[7, 19]
+
+        self.__ax.set_xlabel('experiment phase')
+        self.__ax.set_xlim(getTimeBounds(PHASES))
+        self.__ax.xaxis.set_major_locator(mpd.HourLocator(np.array(hours),tz=tzone))
+        self.__ax.xaxis.set_ticks_position('none')
+
+    def __plotPercentReferenceLines(self):
+        for y in self.yticks:
+            self.__ax.axhline(y, color='#A0A0A0', lw=1)
+
+    def __plotDarkPhasesInBackground(self):
+        for phase in PHASES:
+            if phase.endswith('dark'):
+                start, end = getTimeBounds(phase)
+                self.__ax.axvspan(start, end, color='#E0E0E0')
+
+        
+    def __exit__(self, type, value, traceback):
+        self.__ax.autoscale_view()
+        self.__fig.autofmt_xdate()
+        plt.show()
+    
+def getPhaseMidtime(phase):
+    return getTimeBounds(phase).mean()
+
+def getSEM(X):
+    return X.std(axis=0) / np.sqrt(np.logical_not(X.mask).sum(axis=0))
+
+def getCI95(X):
+    return 1.96 * getSEM(X)
+  
+# It is a good practice to plot error bars as confidence intervals instead of
+# SEM\cite{Cumming2014newStat}
+def plotGroupAverages(ax, series):
+    masked = np.ma.masked_invalid(series)
+    mean = masked.mean(axis=0)
+    error = getSEM(masked) # Reviewer pointed inconsistency of CI95 with example #3
+    midpoints = [getPhaseMidtime(phase) for phase in PHASES]
+    ax.errorbar(midpoints, mean * 100, yerr=error * 100,
+                linewidth=3, elinewidth=2,
+                marker='o', markeredgecolor="blue",
+                markersize=10,
+                ecolor="black",
+                color="blue", linestyle='--',
+                dash_capstyle='round',
+                alpha=0.69)
+
+
+with DecoratedAxes() as ax:
+    ax.xaxis.set_major_formatter(timeline)
+    
+    performance = getPerformanceMatrix()
+    ax.plotGroupAverages(performance)
+@
+
+%htbp
+\begin{figure*}
+  \includegraphics[width=0.75\textwidth]{figures/example2_Figure_1.pdf}
+  \caption{
+    {\bf Reward-motivated discrimination learning in FVB mice (n=<%=len(data.getMice())%>).} 
+    \protect\input{example2_figure_caption}
+  }
+  \label{figureSideDiscrimination}
+\end{figure*}
+

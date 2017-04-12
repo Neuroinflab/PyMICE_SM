@@ -1,0 +1,41 @@
+<<echo=False,results='hidden'>>=
+import numpy as np
+import pymice as pm
+import pweave
+import matplotlib
+import dateutil
+import pytz
+import sys
+
+
+def pmVersion():
+    return pmTemplate().format(v=pm.__version__)
+
+def pmTemplate():
+    return PM_TEMPLATE_HEAD +  pmTemplateTail()
+
+def isPmVersionKnown():
+    return pm.__version__ in PM_KNOWN_VERSIONS
+
+PM_TEMPLATE_HEAD = '\emph{{PyMICE}} v.~{v}'
+PM_KNOWN_VERSIONS = {'0.2.3', '0.2.4', '0.2.5', '1.0.0'}
+
+def pmTemplateTail():
+  return '~\cite{{pymice{v}}}' if isPmVersionKnown() else ''
+
+@
+We claim that all results presented in the article may be reproduced on a
+Linux\footnote{We have not tested if the results are reproducible on other
+operating systems, however it is likely.} machine with an interpreter of
+\emph{Python} programming
+language~\cite{rossum1995} v.~<%= '.'.join(map(str, sys.version_info[:3])) %>, <%= pmVersion() %>,
+\emph{NumPy}~\cite{wald2011,Oliphant:2007ud} v.~<%= np.__version__ %>,
+\emph{matplitlib}~\cite{citeulike:2878517} v.~<%= matplotlib.__version__ %>,
+\emph{dateutil}~\cite{dateutil} v.~<%= dateutil.__version__ %>
+and \emph{pytz}~\cite{pytz} v.~<%= pytz.__version__ %>.~\cite{Wilson2014}
+
+To reproduce the article\footnote{generate a new PDF document based on
+the reproduced results} itself according to \ref{reproduction},
+\emph{pdflatex} (v.~3.1415926), \emph{BibTeX} (v.~0.99d),
+ and \emph{Pweave}~\cite{Pweave,matti_pastell_2016_44683} (v.~<%= pweave.__version__ %>)
+tools are necessary.

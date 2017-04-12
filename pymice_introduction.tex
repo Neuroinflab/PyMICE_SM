@@ -1,0 +1,82 @@
+
+In recent years a number of automated environments for behavioral testing
+have been developed, based on 
+RFID~\cite{Dellomo:1998ts,Galsworthy:2005br,Daan:2011wl,EcoHABfullyauto:2015tk}
+or video tracking of
+animals~\cite{deChaumont:2012du,Weissbrod:2013bc,Shemesh:2013be,PerezEscudero:2014ed}.
+Such automated systems have many advantages compared to the traditional behavioral tests,
+such as:
+reduction of the animal stress caused by isolation and
+handling~\cite{Heinrichs:2006dk,Sorge:2014fb},
+possibility of studying social interactions in group-housed
+animals~\cite{Kiryk:2011tk},
+possibility of long-term studies,
+easier standardization of protocols in turn leading to better
+reproducibility of results between
+laboratories~\cite{Crabbe:1999vf,Chesler:2002wo,Krackow:2010ck,Codita:2012jv,Morrison:2014cn,Vannoni:2014jt}.
+
+The system we are particularly interested in is the IntelliCage
+system~\cite{intelliCagePlusManual2011,Kiryk:2011tk,Radwanska:2012fd,Puscian:2014cu,Mijakowska:2015io}
+(see \fig{intellicageSystem}), increasingly popular in behavioral research on
+rodents~\cite{IntelliCageReferenceList}.
+
+The system outputs a large amount of data
+describing the behavior of the mice in the conditioning corners of the cage.
+A typical experiment yields
+10-100~thousand visits recorded during several weeks or months.
+Such large data call for development of data analysis methods
+and software. One way to address the need of data analysis is to develop a
+dedicated application, preferably with a graphical user interface (GUI),
+which would allow researchers to inspect the data and extract relevant quantities
+interactively. In fact, such an application, called Analyzer, is
+provided with the IntelliCage system. While an
+interactive GUI-based program for data analysis may be
+useful, it has certain limitations. In the context of scientific research
+perhaps the most severe limitation is poor reproducibility of the analysis,
+unless strict measures are taken to record
+every single action of the user. Moreover, there is usually no automated
+way to perform exactly the same analysis on a different dataset, 
+and repeating the analysis manually is very time-consuming 
+and highly error-prone. Another inconvenience of ready-made programs is
+that they are typically limited to a predefined set of analysis methods,
+and not easily extendable.
+
+Custom data analysis programs (e.g. scripts) fall at the opposite end of the
+spectrum than GUI programs. First, the most obvious advantage of such
+programs is the essentially unlimited possibility of implementing specialized
+analysis methods and applying them much better (in terms of calculation speed,
+precision and robustness) than a human.
+
+Second, a noninteractive program (written in any programming language)
+running in batch mode is, by 
+definition~\cite{Hoare69anaxiomatic,Turing1936,Floyd1967Flowcharts,Mccarthy63abasis},
+an exhaustive specification of the analysis. In contrast, a plain language
+description usually included in a Methods section of a journal article
+may be ambiguous or not up-to-date.
+The voices calling for providing the data analysis workflows together with
+journal publications date at least two decades back~\cite{buckheit1995}:
+`an article about computational science in a scientific publication is not
+the scholarship itself, it is merely advertising of the scholarship. The
+actual scholarship is the complete software development environment and the
+complete set of instructions which generated the figures.'
+
+Finally, one of the advantages of using an automated behavioral setup 
+is the possibility of high-throughput screening
+by running the same protocol for a number of mice
+cohorts (for example treatment and control groups and/or different strains
+of mice~\cite{Puscian:2014cu}). Manual processing of each dataset separately
+is both tedious and prone to errors. Batch-processing using a data
+analysis script is an obvious remedy as it allows for repetition of exactly
+the same steps of analysis.
+
+The only drawback is that the entry threshold for data analysis using a
+programming language is much higher, as a significant effort is required to
+learn the programming language and necessary technical details (e.g. the data
+format).
+Our goal here is to lower this threshold by providing an easy and intuitive
+way to access the IntelliCage data in Python programming language~\cite{rossum1995}.
+
+This paper is organized as follows: first, we briefly describe the IntelliCage system.
+Next, we introduce PyMICE through a series of examples and provide pointers 
+to further documentation. We conclude with a short section on technical details and 
+a discussion.
