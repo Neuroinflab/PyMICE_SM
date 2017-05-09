@@ -237,7 +237,10 @@ with DecoratedAxes() as ax:
   \includegraphics[width=0.75\textwidth]{figures/example2_Figure_1.pdf}
   \caption{
     {\bf Reward-motivated discrimination learning in FVB mice (n=<%=len(data.getMice())%>).} 
-    \protect\input{example2_figure_caption}
+    The chart depicts efficient learning of reward position, as measured by the
+    percentage of first nosepokes made to the bottle containing reward right after
+    entering the corner.
+    Error bars are standard error of the mean.
   }
   \label{figureSideDiscrimination}
 \end{figure*}
