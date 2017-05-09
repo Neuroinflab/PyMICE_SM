@@ -8,11 +8,6 @@
 * Szymon Łęski
 
 
-### Abstract
-> We provide our readers with resources and guidance necessary to reproduce the
-> presented results.
-
-
 ### Introduction
 In order to meet the standarts of reproducibility and enable a reproducibility
 review we decided to publish the data and complete source of the article.
@@ -41,15 +36,15 @@ procedure: copy content of the repository to the working directory.
 In case the GNU Make tool (or similar) is installed in the system, to reproduce
 the article run:
 
-'''bash
+```bash
 $ make article.pdf
-'''
+```
 
 If GNU Make tool is not installed, you need to weave the texw files. It is
 important to weave get\_example\_data.texw as the first file, since example
 data are saved in the working directory during its weaving.
 
-'''bash
+```bash
 $ Pweave -f tex -F figures get\_example\_data.texw
 $ Pweave -f tex -F figures example1.texw
 $ Pweave -f tex -F figures example2.texw
@@ -57,16 +52,16 @@ $ Pweave -f tex -F figures example3.texw
 $ Pweave -f tex -F figures example4.texw
 $ Pweave -f tex -F figures pymice\_overview.texw
 $ Pweave -f tex -F figures pymice\_reproducibility.texw
-'''
+```
 
 After all files have been weaved, compile the LaTeX source.
 
-'''bash
+```bash
 $ pdflatex article.tex
 $ bibtex article
 $ pdflatex article.tex
 $ pdflatex article.tex
-'''
+```
 
 The article.pdf file contains the reproduced article.
 
@@ -80,9 +75,9 @@ directory.
 In case the GNU Make tool (or similar) is installed in the system, to reproduce
 the supplementary materials run:
 
-'''bash
+```bash
 $ make supplementary\_materials.zip
-'''
+```
 
 The archive **supplementary\_materials.zip** contains the complete supplementary
 materials.
@@ -92,34 +87,34 @@ materials manually.
 
 First tangle and execute script providing the raw data.
 
-'''bash
+```bash
 $ Ptangle get\_example\_data.texw
 $ python get\_example\_data.py
-'''
+```
 
 Tangle the examples.
 
-'''bash
+```bash
 $ Ptangle example1.py
 $ Ptangle example2.py
 $ Ptangle example3.py
 $ Ptangle example4.py
-'''
+```
 
 Weave the reproducibility statement.
 
-'''bash
+```bash
 $ Pweave -f tex -F figures supplementary\_reproducibility.texw
-'''
+```
 
 Eventually compile the LaTeX source.
 
-'''bash
+```bash
 $ pdflatex supplementary\_materials.tex
 $ bibtex supplementary\_materials
 $ pdflatex supplementary\_materials.tex
 $ pdflatex supplementary\_materials.tex
-'''
+```
 
 The **supplementary\_materials.pdf** file contains description of supplementary
 materials.
