@@ -122,7 +122,9 @@ materials.
 
 ### Acknowledgements
 
-JD, KR and SŁ supported by a Symfonia NCN grant UMO-2013/
-08/W/NZ4/00691. AP supported by a grant from Switzerland through the Swiss
-Contribution to the enlarged European Union (PSPB-210/2010 to Ewelina Knapska
-and Hans-Peter Lipp). KR and ZM supported by an FNP grant POMOST/2011-4/7 to KR.
+> JD, KR and SŁ supported by a Symfonia NCN grant UMO-2013/
+> 08/W/NZ4/00691. AP supported by a grant from Switzerland through the Swiss
+> Contribution to the enlarged European Union (PSPB-210/2010 to Ewelina Knapska
+> and Hans-Peter Lipp).
+> 
+> KR and ZM supported by an FNP grant POMOST/2011-4/7 to KR.
