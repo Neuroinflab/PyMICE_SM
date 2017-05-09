@@ -105,7 +105,7 @@ abnormal situations may be easily extended.
 
 
 \begin{figure*}
-  \includegraphics[width=0.75\textwidth]{apiScheme.pdf}
+  \includegraphics[width=0.75\textwidth]{figures/apiScheme.pdf}
   \caption{
     {\bf Visualisation of PyMICE data structures.} 
     To investigate visit events recorded by the IntelliCage system, a \code{list}

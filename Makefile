@@ -29,7 +29,7 @@ all: ${ALL}
 clean:
 	${RM} ${ALL} ${INTERMEDIATE} ${SUPPLEMENTARY_MATERIALS} ${DATA} ${FIGURES} ${TEMPORARY_FILES}
 
-article.pdf: article.tex ${TEX_SRC} ${BIB_SRC} ${FIGURES} apiScheme.pdf drawings/FigureIC.pdf spmpsci.bst svglov3.clo svjour3.cls
+article.pdf: article.tex ${TEX_SRC} ${BIB_SRC} ${FIGURES} apiScheme.pdf ${FIGDIR}/FigureIC.pdf spmpsci.bst svglov3.clo svjour3.cls
 supplementary_materials.pdf: supplementary_materials.tex ${BIB_SRC} supplementary_reproducibility.tex spmpsci.bst svglov3.clo svjour3.cls
 
 article.pdf supplementary_materials.pdf:
@@ -56,7 +56,7 @@ ${DATA}: get_example_data.py
 	python get_example_data.py
 	${TOUCH} demo.zip ${C57_AB} ${FVB}
 
-SOURCES=${MISSING_NP_DATA} Makefile article.tex pymice_abstract.tex pymice_acknowledgements.tex pymice_discussion.tex pymice_examples.tex pymice_intellicage.tex pymice_introduction.tex pymice_technical.tex pymice_termsofuse.tex example1.texw  example2.texw example3.texw example4.texw get_example_data.texw pymice_overview.texw pymice_reproducibility.texw pymice.bib szymonall.bib apiScheme.pdf drawings/FigureIC.pdf spmpsci.bst svglov3.clo svjour3.cls supplementary_materials.tex supplementary_reproducibility.texw
+SOURCES=${MISSING_NP_DATA} Makefile article.tex pymice_abstract.tex pymice_acknowledgements.tex pymice_discussion.tex pymice_examples.tex pymice_intellicage.tex pymice_introduction.tex pymice_technical.tex pymice_termsofuse.tex example1.texw  example2.texw example3.texw example4.texw get_example_data.texw pymice_overview.texw pymice_reproducibility.texw pymice.bib szymonall.bib apiScheme.pdf ${FIGDIR}/FigureIC.pdf spmpsci.bst svglov3.clo svjour3.cls supplementary_materials.tex supplementary_reproducibility.texw
 
 article_source.zip: ${SOURCES}
 	zip -9 $@ ${SOURCES}
