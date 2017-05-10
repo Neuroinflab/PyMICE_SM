@@ -95,10 +95,10 @@ $ python get\_example\_data.py
 Tangle the examples.
 
 ```bash
-$ Ptangle example1.py
-$ Ptangle example2.py
-$ Ptangle example3.py
-$ Ptangle example4.py
+$ Ptangle example1.texw
+$ Ptangle example2.texw
+$ Ptangle example3.texw
+$ Ptangle example4.texw
 ```
 
 Weave the reproducibility statement.
