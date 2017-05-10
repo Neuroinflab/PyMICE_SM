@@ -104,7 +104,7 @@ $ Ptangle example4.texw
 Weave the reproducibility statement.
 
 ```bash
-$ Pweave -f tex -F figures supplementary\_reproducibility.texw
+$ Pweave -f tex supplementary\_reproducibility.texw
 ```
 
 Eventually compile the LaTeX source.
