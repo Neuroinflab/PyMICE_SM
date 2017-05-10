@@ -45,13 +45,13 @@ important to weave get\_example\_data.texw as the first file, since example
 data are saved in the working directory during its weaving.
 
 ```bash
-$ Pweave -f tex -F figures get\_example\_data.texw
-$ Pweave -f tex -F figures example1.texw
+$ Pweave -f tex get\_example\_data.texw
+$ Pweave -f tex pymice\_overview.texw
+$ Pweave -f tex pymice\_reproducibility.texw
+$ Pweave -f tex example1.texw
 $ Pweave -f tex -F figures example2.texw
 $ Pweave -f tex -F figures example3.texw
 $ Pweave -f tex -F figures example4.texw
-$ Pweave -f tex -F figures pymice\_overview.texw
-$ Pweave -f tex -F figures pymice\_reproducibility.texw
 ```
 
 After all files have been weaved, compile the LaTeX source.

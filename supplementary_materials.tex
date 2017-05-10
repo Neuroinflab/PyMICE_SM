@@ -202,13 +202,13 @@ since example data (\ref{data:examples}) are saved in the working directory
 during its weaving.
 
 \begin{verbatim}
-$ Pweave -f tex -F figures get_example_data.texw
-$ Pweave -f tex -F figures example1.texw
+$ Pweave -f tex get_example_data.texw
+$ Pweave -f tex pymice_overview.texw
+$ Pweave -f tex pymice_reproducibility.texw
+$ Pweave -f tex example1.texw
 $ Pweave -f tex -F figures example2.texw
 $ Pweave -f tex -F figures example3.texw
 $ Pweave -f tex -F figures example4.texw
-$ Pweave -f tex -F figures pymice_overview.texw
-$ Pweave -f tex -F figures pymice_reproducibility.texw
 \end{verbatim}
 
 After all files have been weaved, compile the \LaTeX{} source.
