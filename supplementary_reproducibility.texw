@@ -9,13 +9,13 @@ import sys
 
 
 def pmVersion():
-    return pmTemplate().format(v=pm.__version__)
+  return pmTemplate().format(v=pm.__version__)
 
 def pmTemplate():
-    return PM_TEMPLATE_HEAD +  pmTemplateTail()
+  return PM_TEMPLATE_HEAD +  pmTemplateTail()
 
 def isPmVersionKnown():
-    return pm.__version__ in PM_KNOWN_VERSIONS
+  return pm.__version__ in PM_KNOWN_VERSIONS
 
 PM_TEMPLATE_HEAD = '\emph{{PyMICE}} v.~{v}'
 PM_KNOWN_VERSIONS = {'0.2.3', '0.2.4', '0.2.5', '1.0.0'}

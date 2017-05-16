@@ -75,7 +75,8 @@ of one mouse, and each column corresponds to one phase of the experiment for all
 \begin{samepage}
 <<echo=True, results='hidden'>>=
 def getPerformanceMatrix():
-    return [getPerformanceCurve(mouse) for mouse in data.getMice()]
+  return [getPerformanceCurve(mouse)
+          for mouse in data.getMice()]
 @
 \end{samepage}
 
@@ -85,7 +86,8 @@ create a row corresponding to the performance of that mouse across subsequent ph
 \begin{samepage}
 <<echo=True, results='hidden'>>=
 def getPerformanceCurve(mouse):
-    return [getPerformance(mouse, phase) for phase in PHASES]
+  return [getPerformance(mouse, phase)
+          for phase in PHASES]
 @
 \end{samepage}
 
@@ -96,13 +98,17 @@ which are performed to the rewarded side) in subsequent phases.
 \begin{samepage}
 <<echo=True, results='hidden'>>=
 def getPerformance(mouse, phase):
-    start, end = timeline.getTimeBounds(phase)
-    visits = data.getVisits(mice=[mouse], start=start, end=end)
-    accessibleCornerVisits = filter(isToCorrectCorner, visits)
-    return calculatePerformance(accessibleCornerVisits)
+  start, end = timeline.getTimeBounds(phase)
+  visits = data.getVisits(mice=[mouse],
+                          start=start, end=end)
+  accessibleCornerVisits = filter(
+                             isToCorrectCorner,
+                             visits)
+  return calculatePerformance(
+                        accessibleCornerVisits)
 
 def isToCorrectCorner(visit):
-    return visit.CornerCondition > 0
+  return visit.CornerCondition > 0
 @
 \end{samepage}
 
@@ -116,12 +122,14 @@ was marked as `correct'. Thus visits to the corner have positive value of the
 \begin{samepage}
 <<echo=True, results='hidden'>>=
 def calculatePerformance(visits):
-    firstNps = [v.Nosepokes[0] for v in visits if v.Nosepokes]
-    successes = [isToCorrectSide(nosepoke) for nosepoke in firstNps]
-    return successRatio(successes)
+  firstNps = [v.Nosepokes[0]
+              for v in visits if v.Nosepokes]
+  successes = [isToCorrectSide(nosepoke)
+               for nosepoke in firstNps]
+  return successRatio(successes)
 
 def isToCorrectSide(nosepoke):
-    return nosepoke.SideCondition > 0
+  return nosepoke.SideCondition > 0
 @
 \end{samepage}
 
@@ -138,7 +146,7 @@ the sides we calculate the success ratio (code omitted here).
 
 <<echo=False, results='hidden'>>=
 def successRatio(successes):
-    return np.mean(successes)
+  return np.mean(successes)
 @
 
 With all the functions defined, we obtain the performance matrix and plot it
@@ -149,87 +157,87 @@ def getTimeBounds(phases):
   return mpd.date2num(timeline.getTimeBounds(phases))
 
 class DecoratedAxes(object):
-    yticks = range(0, 110, 10)
+  yticks = range(0, 110, 10)
 
-    def __enter__(self):
-        fig, ax = plt.subplots(figsize=(13, 8))
+  def __enter__(self):
+    fig, ax = plt.subplots(figsize=(13, 8))
 
-        #ax.set_title('C57BL/6 - PLACE PREFERENCE LEARNING')
+    #ax.set_title('C57BL/6 - PLACE PREFERENCE LEARNING')
 
-        self.__ax = ax
-        self.__fig = fig
-        self.__setUpAxisY()
-        self.__setUpAxisX()
-        self.__plotDarkPhasesInBackground()
-        self.__plotPercentReferenceLines()
-        
-        ax.plotGroupAverages = plotGroupAverages.__get__(ax, ax.__class__)
-        return ax
+    self.__ax = ax
+    self.__fig = fig
+    self.__setUpAxisY()
+    self.__setUpAxisX()
+    self.__plotDarkPhasesInBackground()
+    self.__plotPercentReferenceLines()
+    
+    ax.plotGroupAverages = plotGroupAverages.__get__(ax, ax.__class__)
+    return ax
 
-    def __setUpAxisY(self):
-        self.__ax.set_ylabel('% of correct responses')
-        self.__ax.set_ylim(min(self.yticks), max(self.yticks))
-        self.__ax.yaxis.set_ticks_position('none')
-        self.__ax.yaxis.set_major_formatter(mtick.FormatStrFormatter("%.0f%%"))
-        self.__ax.set_yticks(self.yticks)
-        
+  def __setUpAxisY(self):
+    self.__ax.set_ylabel('% of correct responses')
+    self.__ax.set_ylim(min(self.yticks), max(self.yticks))
+    self.__ax.yaxis.set_ticks_position('none')
+    self.__ax.yaxis.set_major_formatter(mtick.FormatStrFormatter("%.0f%%"))
+    self.__ax.set_yticks(self.yticks)
+      
 
-    def __setUpAxisX(self):
-        tzone = pytz.timezone('CET')
-        hours=[7, 19]
+  def __setUpAxisX(self):
+    tzone = pytz.timezone('CET')
+    hours=[7, 19]
 
-        self.__ax.set_xlabel('experiment phase')
-        self.__ax.set_xlim(getTimeBounds(PHASES))
-        self.__ax.xaxis.set_major_locator(mpd.HourLocator(np.array(hours),tz=tzone))
-        self.__ax.xaxis.set_ticks_position('none')
+    self.__ax.set_xlabel('experiment phase')
+    self.__ax.set_xlim(getTimeBounds(PHASES))
+    self.__ax.xaxis.set_major_locator(mpd.HourLocator(np.array(hours),tz=tzone))
+    self.__ax.xaxis.set_ticks_position('none')
 
-    def __plotPercentReferenceLines(self):
-        for y in self.yticks:
-            self.__ax.axhline(y, color='#A0A0A0', lw=1)
+  def __plotPercentReferenceLines(self):
+    for y in self.yticks:
+      self.__ax.axhline(y, color='#A0A0A0', lw=1)
 
-    def __plotDarkPhasesInBackground(self):
-        for phase in PHASES:
-            if phase.endswith('dark'):
-                start, end = getTimeBounds(phase)
-                self.__ax.axvspan(start, end, color='#E0E0E0')
+  def __plotDarkPhasesInBackground(self):
+    for phase in PHASES:
+      if phase.endswith('dark'):
+        start, end = getTimeBounds(phase)
+        self.__ax.axvspan(start, end, color='#E0E0E0')
 
-        
-    def __exit__(self, type, value, traceback):
-        self.__ax.autoscale_view()
-        self.__fig.autofmt_xdate()
-        plt.show()
+      
+  def __exit__(self, type, value, traceback):
+    self.__ax.autoscale_view()
+    self.__fig.autofmt_xdate()
+    plt.show()
     
 def getPhaseMidtime(phase):
-    return getTimeBounds(phase).mean()
+  return getTimeBounds(phase).mean()
 
 def getSEM(X):
-    return X.std(axis=0) / np.sqrt(np.logical_not(X.mask).sum(axis=0))
+  return X.std(axis=0) / np.sqrt(np.logical_not(X.mask).sum(axis=0))
 
 def getCI95(X):
-    return 1.96 * getSEM(X)
+  return 1.96 * getSEM(X)
   
 # It is a good practice to plot error bars as confidence intervals instead of
 # SEM\cite{Cumming2014newStat}
 def plotGroupAverages(ax, series):
-    masked = np.ma.masked_invalid(series)
-    mean = masked.mean(axis=0)
-    error = getSEM(masked) # Reviewer pointed inconsistency of CI95 with example #3
-    midpoints = [getPhaseMidtime(phase) for phase in PHASES]
-    ax.errorbar(midpoints, mean * 100, yerr=error * 100,
-                linewidth=3, elinewidth=2,
-                marker='o', markeredgecolor="blue",
-                markersize=10,
-                ecolor="black",
-                color="blue", linestyle='--',
-                dash_capstyle='round',
-                alpha=0.69)
+  masked = np.ma.masked_invalid(series)
+  mean = masked.mean(axis=0)
+  error = getSEM(masked) # Reviewer pointed inconsistency of CI95 with example #3
+  midpoints = [getPhaseMidtime(phase) for phase in PHASES]
+  ax.errorbar(midpoints, mean * 100, yerr=error * 100,
+              linewidth=3, elinewidth=2,
+              marker='o', markeredgecolor="blue",
+              markersize=10,
+              ecolor="black",
+              color="blue", linestyle='--',
+              dash_capstyle='round',
+              alpha=0.69)
 
 
 with DecoratedAxes() as ax:
-    ax.xaxis.set_major_formatter(timeline)
+  ax.xaxis.set_major_formatter(timeline)
     
-    performance = getPerformanceMatrix()
-    ax.plotGroupAverages(performance)
+  performance = getPerformanceMatrix()
+  ax.plotGroupAverages(performance)
 @
 
 %htbp

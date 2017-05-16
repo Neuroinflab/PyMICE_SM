@@ -31,74 +31,74 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def setUpAxes(ax):
-    setUpAxisX(ax)
-    setUpAxisY(ax)
-    drawReferenceIntervals(ax)
-    addLogHistMethod(ax)
+  setUpAxisX(ax)
+  setUpAxisY(ax)
+  drawReferenceIntervals(ax)
+  addLogHistMethod(ax)
 
 
 def setUpAxisX(ax):
-    ax.set_xscale('log')
-    ax.set_xlim(0.05, 5000)
-    ax.set_xticks([0.1, 1, 10, 100, 1000])
-    ax.xaxis.set_ticks_position('bottom')
-    ax.xaxis.set_tick_params(direction='out', which='both')
+  ax.set_xscale('log')
+  ax.set_xlim(0.05, 5000)
+  ax.set_xticks([0.1, 1, 10, 100, 1000])
+  ax.xaxis.set_ticks_position('bottom')
+  ax.xaxis.set_tick_params(direction='out', which='both')
 
 
 def setUpAxisY(ax):
-    ax.set_ylim(0, 70)
-    ax.set_yticks([0, 20, 40, 60])
-    ax.yaxis.set_ticks_position('left')
-    ax.yaxis.set_tick_params(direction='out', which='both')
+  ax.set_ylim(0, 70)
+  ax.set_yticks([0, 20, 40, 60])
+  ax.yaxis.set_ticks_position('left')
+  ax.yaxis.set_tick_params(direction='out', which='both')
 
 
 def drawReferenceIntervals(ax):
-    ax.axvline(1, ls=':', color='k')
-    ax.axvline(60, ls=':', color='k')
-    ax.axvline(3600, ls=':', color='k')
+  ax.axvline(1, ls=':', color='k')
+  ax.axvline(60, ls=':', color='k')
+  ax.axvline(3600, ls=':', color='k')
 
 
 def addLogHistMethod(ax):
-    def logHist(self, xs):
-        self.hist(xs, bins=np.logspace(-2, 4, 30))
+  def logHist(self, xs):
+    self.hist(xs, bins=np.logspace(-2, 4, 30))
 
-    ax.logHist = logHist.__get__(ax, ax.__class__)
+  ax.logHist = logHist.__get__(ax, ax.__class__)
 
 
 class DecoratedAxes(object):
-    def __enter__(self):
-        fig, axes = plt.subplots(4, 2, figsize=(13, 8))
+  def __enter__(self):
+    fig, axes = plt.subplots(4, 2, figsize=(13, 8))
 
-        for axRow in axes:
-            for ax in axRow:
-                setUpAxes(ax)
-        
-        for i, axRow in enumerate(axes, 1):
-            axRow[0].set_ylabel("corner #{}".format(i))
+    for axRow in axes:
+      for ax in axRow:
+        setUpAxes(ax)
     
-        for i, ax in enumerate(axes[0], 1):
-            ax.set_title("cage #{}".format(i))
+    for i, axRow in enumerate(axes, 1):
+      axRow[0].set_ylabel("corner #{}".format(i))
+  
+    for i, ax in enumerate(axes[0], 1):
+      ax.set_title("cage #{}".format(i))
 
-        for axRow in axes[:-1]:
-            for ax in axRow:
-                ax.set_xticklabels([])
-                ax.xaxis.set_ticks_position('none')
-                
-        for ax in axes[-1]:
-            ax.set_xlabel('intervisit interval [s]')
-        
-        for axRow in axes:
-            for ax in axRow[1:]:
-                ax.set_yticklabels([])
-                ax.yaxis.set_ticks_position('none')
-                
-        return axes
-        
-    def __exit__(self, type, value, traceback):
-        plt.show()
-        #self.__ax.legend(loc='lower right')
-        #self.__ax.autoscale_view()
-        #self.__fig.autofmt_xdate()
+    for axRow in axes[:-1]:
+      for ax in axRow:
+        ax.set_xticklabels([])
+        ax.xaxis.set_ticks_position('none')
+            
+    for ax in axes[-1]:
+      ax.set_xlabel('intervisit interval [s]')
+    
+    for axRow in axes:
+      for ax in axRow[1:]:
+        ax.set_yticklabels([])
+        ax.yaxis.set_ticks_position('none')
+            
+    return axes
+      
+  def __exit__(self, type, value, traceback):
+    plt.show()
+    #self.__ax.legend(loc='lower right')
+    #self.__ax.autoscale_view()
+    #self.__fig.autofmt_xdate()
 @
 
 We begin by selecting all visits performed during the phase.
@@ -106,8 +106,10 @@ The \code{order} parameter of the \code{.getVisits()} method
 makes the returned sequence ordered with respect to the 
 \code{.Start} attribute. 
 <<echo=True,results='hidden'>>=
-start, end = timeline.getTimeBounds('Place Pref 3 dark')
-visits = data.getVisits(start=start, end=end, order='Start')
+start, end = timeline.getTimeBounds(
+                           'Place Pref 3 dark')
+visits = data.getVisits(start=start, end=end,
+                        order='Start')
 @
 
 This list contains visits performed to all corners of the cage. 
@@ -117,8 +119,8 @@ performed \textbf{to the same corner}, in the same cage.
 \begin{samepage}
 <<>>=
 def getSubsequence(visits, cage, corner):
-    return [v for v in visits
-            if v.Cage == cage and v.Corner == corner]
+  return [v for v in visits if v.Cage == cage
+                        and v.Corner == corner]
 @
 \end{samepage}
 
@@ -128,8 +130,9 @@ intervisit intervals.
 \begin{samepage}
 <<>>=
 def getIntervisitIntervals(visits):
-    return [(b.Start - a.End)
-            for (a, b) in zip(visits[:-1], visits[1:])]
+  return [(b.Start - a.End)
+          for (a, b) in zip(visits[:-1],
+                            visits[1:])]
 @
 \end{samepage}
 
@@ -139,14 +142,14 @@ full code is available at \url{https://github.com/Neuroinflab/PyMICE_SM/blob/exa
 
 <<echo=False,results='hidden',fig=True,include=False,name='Figure'>>=
 def toSeconds(intervals):
-    return [x.total_seconds() for x in intervals]
+  return [x.total_seconds() for x in intervals]
 
 with DecoratedAxes() as axes:
-    for corner, axRow in enumerate(axes, 1):
-        for cage, ax in enumerate(axRow, 1):
-            cornerVisits = getSubsequence(visits, cage, corner)
-            intervals = getIntervisitIntervals(cornerVisits)
-            ax.logHist(toSeconds(intervals))
+  for corner, axRow in enumerate(axes, 1):
+    for cage, ax in enumerate(axRow, 1):
+      cornerVisits = getSubsequence(visits, cage, corner)
+      intervals = getIntervisitIntervals(cornerVisits)
+      ax.logHist(toSeconds(intervals))
 @
 
 %htbp

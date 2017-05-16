@@ -69,19 +69,19 @@ start = datetime.datetime(2014, 9, 11, 22, tzinfo=timezone)
 end = datetime.datetime(2014, 9, 12, 4, tzinfo=timezone)
 
 try:
-    data = pm.Loader('2014-09-11 14.13.34.zip')
-    visits = data.getVisits(start=start, end=end, mice='9')
+  data = pm.Loader('2014-09-11 14.13.34.zip')
+  visits = data.getVisits(start=start, end=end, mice='9')
 
 except:
-    licksMissingRelativePercentage = licksMissing = 'ERROR: unable to load datafile'
+  licksMissingRelativePercentage = licksMissing = 'ERROR: unable to load datafile'
 
 else:
-    licksRecorded = sum(v.LickNumber for v in visits)
-    licksMissing = licksRecorded - LICKS_REPORTED_BY_ANALYSER
-    licksMissingRelativePercentage = int(round(100. * licksMissing / licksRecorded))
+  licksRecorded = sum(v.LickNumber for v in visits)
+  licksMissing = licksRecorded - LICKS_REPORTED_BY_ANALYSER
+  licksMissingRelativePercentage = int(round(100. * licksMissing / licksRecorded))
 
 def asHours(timedelta):
-    return int(round(timedelta.total_seconds() / 3600))
+  return int(round(timedelta.total_seconds() / 3600))
 @
 PyMICE operates on \emph{ZIP} archives saved by the IntelliCage software controlling
 the experiment. Data from several recording sessions may be easily merged and analyzed 
