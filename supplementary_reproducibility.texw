@@ -8,27 +8,49 @@ import pytz
 import sys
 
 
-def pmVersion():
-    return pmTemplate().format(v=pm.__version__)
+class CiteModule(object):
+    TEMPLATE_REFERENCE = '~\cite{{{ref}}}'
 
-def pmTemplate():
-    return PM_TEMPLATE_HEAD +  pmTemplateTail()
+    def __repr__(self):
+        return self._version()
 
-def isPmVersionKnown():
-    return pm.__version__ in PM_KNOWN_VERSIONS
+    def _version(self):
+        return self.TEMPLATE.format(v=self.MODULE.__version__,
+                                    ref=self._reference())
 
-PM_TEMPLATE_HEAD = '\emph{{PyMICE}} v.~{v}'
-PM_KNOWN_VERSIONS = {'0.2.3', '0.2.4', '0.2.5', '1.0.0'}
+    def _reference(self):
+        try:
+            ref = self.VERSION_REFERENCE[self.MODULE.__version__]
 
-def pmTemplateTail():
-  return '~\cite{{pymice{v}}}' if isPmVersionKnown() else ''
+        except KeyError:
+            return ''
+
+        return self.TEMPLATE_REFERENCE.format(ref=ref)
+
+class CitePyMICE(CiteModule):
+    MODULE = pm
+    TEMPLATE = '\emph{{PyMICE}} v.~{v}{ref}'
+    VERSION_REFERENCE = {'0.2.3': 'pymice0.2.3',
+                         '0.2.4': 'pymice0.2.4',
+                         '0.2.5': 'pymice0.2.5',
+                         '1.0.0': 'pymice1.0.0',
+                         '1.1.0': 'pymice1.1.0',
+                         '1.1.1': 'pymice1.1.1'}
+
+class CitePweave(CiteModule):
+    MODULE = pweave
+    TEMPLATE = '\emph{{Pweave}} tool~\cite{{Pweave}} v.~{v}{ref}'
+    VERSION_REFERENCE = {'0.23.1': 'matti_pastell_2016_44683',
+                         '0.23.2': 'matti_pastell_2016_44818',
+                         '0.24': 'matti_pastell_2016_45054',
+                         '0.25': 'matti_pastell_2016_50174'}
 
 @
 We claim that all results presented in the article may be reproduced on a
 Linux\footnote{We have not tested if the results are reproducible on other
 operating systems, however it is likely.} machine with an interpreter of
 \emph{Python} programming
-language~\cite{rossum1995} v.~<%= '.'.join(map(str, sys.version_info[:3])) %>, <%= pmVersion() %>,
+language~\cite{rossum1995} v.~<%= '.'.join(map(str, sys.version_info[:3])) %>, <%= CitePyMICE() %>,
 \emph{NumPy}~\cite{wald2011,Oliphant:2007ud} v.~<%= np.__version__ %>,
 \emph{matplitlib}~\cite{citeulike:2878517} v.~<%= matplotlib.__version__ %>,
 \emph{dateutil}~\cite{dateutil} v.~<%= dateutil.__version__ %>
@@ -37,5 +59,5 @@ and \emph{pytz}~\cite{pytz} v.~<%= pytz.__version__ %>.~\cite{Wilson2014}
 To reproduce the article\footnote{generate a new PDF document based on
 the reproduced results} itself according to \ref{reproduction},
 \emph{pdflatex} (v.~3.1415926), \emph{BibTeX} (v.~0.99d),
- and \emph{Pweave}~\cite{Pweave,matti_pastell_2016_44683} (v.~<%= pweave.__version__ %>)
+ and <%= CitePweave() %>
 tools are necessary.

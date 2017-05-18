@@ -1239,9 +1239,7 @@
   Volume                   = {53},
 
   Annote                   = {Notes A. introduction B. the model C. fitting the parameters D. results 1. Contributions of different cell types, compartments, etc., especially for different levels of thalamic input (different cortical modes) 2. Non-linearities (shunting inhibition) One column (50 $\mu$m - one pixel) + additional lateral input 4 types of neurons, 2 spiking patterns (regular spiking, fast spiking) 8-10 compartments leak, sodium, potassium, slow potassium (exc only - adaptation) Network: 6 populations (exc / inh) * (2/3, 4, 5/6) 180 neurons conductance-based synapses Thalamic input: random spike trains to layer 4, varying rate VSD signal: weighted sum of membrane potential layer 2: 0.95 layer 4: 0.05 layer 5: 0 V -{\&}gt; F F = V + 100 ∆F/F (normalized to resting F) Adjusting the model: 1. single neuron level - to fit in vivo intracellular recordings (channel conductances, axial resistance, capacitance) -{\&}gt; shape and rate of spikes Fig. 3 2. Local network fitting synaptic weights to thalamic input needed synaptic depression Fig. 4 3. Fit to exp data (800 ms dot) scatter of thalamic input lateral columns (`hypercolumn' of 750 $\mu$m) - random spike trains with rates given by mean output of the microcolumn
-
 Analysis of the VSD signal correlations: mainly to the membrane potential (Fig 8 A1 vs. Fig 9 A1, Fig 8B vs Fig 9B) VSD mostly correlated with potential of dendrites in superficial layers inhibitory component more important in transient phase (layer 2/3 also includes dendrites of layer 5 neurons)
-
 poor orientation selectivity of vsd},
   Owner                    = {jkowalski},
   Timestamp                = {2017.05.18}
@@ -2015,6 +2013,90 @@ poor orientation selectivity of vsd},
 
   Owner                    = {jkowalski},
   Timestamp                = {2017.05.18}
+}
+
+@Misc{pymiceDoc,
+  Title                    = {{PyMICE documentation}},
+
+  Author                   = {Dzik, Jakub M. and Łęski, Szymon},
+
+  Date                     = {18th-May-2017},
+  Language                 = {english},
+  LastChecked              = {18th-May-2017},
+  Url                      = {https://neuroinflab.github.io/PyMICE/},
+  Urldate                  = {18th-May-2017}
+}
+
+@Misc{pymiceWebsite,
+  Title                    = {{PyMICE -- Laboratory of Neuroinformatics}},
+
+  Author                   = {Dzik, Jakub M. and Łęski, Szymon},
+
+  Date                     = {18th-May-2017},
+  Language                 = {english},
+  LastChecked              = {18th-May-2017},
+  Url                      = {https://neuroinflab.wordpress.com/research/pymice/},
+  Urldate                  = {18th-May-2017}
+}
+
+@Misc{pymice1.1.1,
+  Title                    = {{PyMICE: 1.1.1} release [computer software]},
+
+  Author                   = {Dzik, Jakub Mateusz and Łęski, Szymon and Puścian, Alicja},
+  Month                    = April,
+  Year                     = {2017},
+
+  Doi                      = {10.5281/zenodo.557087}
+}
+
+@Misc{pymice0.2.3,
+  Title                    = {{PyMICE: 0.2.3} [computer software]},
+
+  Author                   = {Dzik, Jakub Mateusz and Łęski, Szymon and Puścian, Alicja},
+  Month                    = jan,
+  Year                     = {2016},
+
+  Doi                      = {10.5281/zenodo.47259}
+}
+
+@Misc{pymice0.2.4,
+  Title                    = {{PyMICE: 0.2.4} [computer software]},
+
+  Author                   = {Dzik, Jakub Mateusz and Łęski, Szymon and Puścian, Alicja},
+  Month                    = January,
+  Year                     = {2016},
+
+  Doi                      = {10.5281/zenodo.47305}
+}
+
+@Misc{pymice0.2.5,
+  Title                    = {{PyMICE: 0.2.5} post-release [computer software]},
+
+  Author                   = {Dzik, Jakub Mateusz and Łęski, Szymon and Puścian, Alicja},
+  Month                    = April,
+  Year                     = {2016},
+
+  Doi                      = {10.5281/zenodo.49550}
+}
+
+@Misc{pymice1.0.0,
+  Title                    = {{PyMICE: 1.0.0} release [computer software]},
+
+  Author                   = {Dzik, Jakub Mateusz and Łęski, Szymon and Puścian, Alicja},
+  Month                    = May,
+  Year                     = {2016},
+
+  Doi                      = {10.5281/zenodo.51092}
+}
+
+@Misc{pymice1.1.0,
+  Title                    = {{PyMICE: 1.1.0} release [computer software]},
+
+  Author                   = {Dzik, Jakub Mateusz and Łęski, Szymon and Puścian, Alicja},
+  Month                    = December,
+  Year                     = {2016},
+
+  Doi                      = {10.5281/zenodo.200648}
 }
 
 @Article{Eberhard:2006wj,
@@ -4319,76 +4401,6 @@ poor orientation selectivity of vsd},
   Timestamp                = {2017.05.18}
 }
 
-@Misc{pymiceDoc,
-  Title                    = {{PyMICE documentation}},
-
-  Author                   = {Kowalski, Jakub M. and Łęski, Szymon},
-  HowPublished             = {Online},
-
-  Date                     = {6th-May-2016},
-  Language                 = {english},
-  LastChecked              = {6th-May-2016},
-  Url                      = {https://neuroinflab.github.io/PyMICE/},
-  Urldate                  = {6th-May-2016}
-}
-
-@Misc{pymiceWebsite,
-  Title                    = {{PyMICE -- Laboratory of Neuroinformatics}},
-
-  Author                   = {Kowalski, Jakub M. and Łęski, Szymon},
-  HowPublished             = {Online},
-
-  Date                     = {14th-Jan-2016},
-  Language                 = {english},
-  LastChecked              = {15th-Jan-2016},
-  Url                      = {https://neuroinflab.wordpress.com/research/pymice/},
-  Urldate                  = {15th-Jan-2016}
-}
-
-@Misc{pymice0.2.3,
-  Title                    = {{PyMICE: 0.2.3}},
-
-  Author                   = {Kowalski, Jakub Mateusz and Łęski, Szymon and Puścian, Alicja},
-  Month                    = jan,
-  Year                     = {2016},
-
-  Doi                      = {10.5281/zenodo.47259},
-  Url                      = {http://dx.doi.org/10.5281/zenodo.47259}
-}
-
-@Misc{pymice0.2.4,
-  Title                    = {{PyMICE: 0.2.4}},
-
-  Author                   = {Kowalski, Jakub Mateusz and Łęski, Szymon and Puścian, Alicja},
-  Month                    = jan,
-  Year                     = {2016},
-
-  Doi                      = {10.5281/zenodo.47305},
-  Url                      = {http://dx.doi.org/10.5281/zenodo.47305}
-}
-
-@Misc{pymice0.2.5,
-  Title                    = {{PyMICE: 0.2.5}},
-
-  Author                   = {Kowalski, Jakub Mateusz and Łęski, Szymon and Puścian, Alicja},
-  Month                    = apr,
-  Year                     = {2016},
-
-  Doi                      = {10.5281/zenodo.49550},
-  Url                      = {http://dx.doi.org/10.5281/zenodo.49550}
-}
-
-@Misc{pymice1.0.0,
-  Title                    = {{PyMICE: 1.0.0}},
-
-  Author                   = {Kowalski, Jakub Mateusz and Łęski, Szymon and Puścian, Alicja},
-  Month                    = may,
-  Year                     = {2016},
-
-  Doi                      = {10.5281/zenodo.51092},
-  Url                      = {http://dx.doi.org/10.5281/zenodo.51092}
-}
-
 @Article{Krackow:2010ck,
   Title                    = {{Consistent behavioral phenotype differences between inbred mouse strains in the IntelliCage.}},
   Author                   = {Krackow, S and Vannoni, E and Codita, A and Mohammed, A H and Cirulli, F and Branchi, I and Alleva, E and Reichelt, A and Willuweit, A and Voikar, V and Colacicco, G and Wolfer, D P and Buschmann, J-U F and Safi, K and Lipp, H-P},
@@ -5909,14 +5921,47 @@ poor orientation selectivity of vsd},
 }
 
 @Misc{matti_pastell_2016_44683,
-  Title                    = {{Pweave - Scientific reports with embedded python computations with reST, LaTeX or markdown}},
+  Title                    = {{Pweave v.0.23.1 [computer software]}},
 
-  Author                   = {Matti Pastell},
+  Author                   = {Pastell, Matti},
   Month                    = jan,
   Year                     = {2016},
 
   Doi                      = {10.5281/zenodo.44683},
-  Url                      = {http://dx.doi.org/10.5281/zenodo.44683}
+  Publisher                = {Zenodo}
+}
+
+@Misc{matti_pastell_2016_45054,
+  Title                    = {{Pweave v.0.24 - Scientific Reports Using Python [computer software]}},
+
+  Author                   = {Pastell, Matti and Kowalski, Jakub},
+  Month                    = jan,
+  Year                     = {2016},
+
+  Doi                      = {10.5281/zenodo.45054},
+  Publisher                = {Zenodo}
+}
+
+@Misc{matti_pastell_2016_44818,
+  Title                    = {{Pweave v.0.23.2 [computer software]}},
+
+  Author                   = {Pastell, Matti and O'Leary, Aaron and Abukaj},
+  Month                    = jan,
+  Year                     = {2016},
+
+  Doi                      = {10.5281/zenodo.44818},
+  Publisher                = {Zenodo}
+}
+
+@Misc{matti_pastell_2016_50174,
+  Title                    = {{Pweave v.0.25 [computer software]}},
+
+  Author                   = {Pastell, Matti and O'Leary, Aaron and Abukaj},
+  Month                    = jan,
+  Year                     = {2016},
+
+  Doi                      = {10.5281/zenodo.50174},
+  Publisher                = {Zenodo}
 }
 
 @Article{PatinoEscarcina:2009vh,
@@ -7538,9 +7583,7 @@ poor orientation selectivity of vsd},
   Pages                    = {1--11},
   Volume                   = {4},
 
-  Annote                   = {Notes role of dendrites different perspective -{\&}gt; novel insights what is 'function'? hierarchical view inverse method morphology generation - pdf's
-bias, no L5 neurons possible
-Maybe use this automatic morphologies to study LFP? eg. single morphology in the population vs many similar but not identical cells
+  Annote                   = {Notes role of dendrites different perspective -{\&}gt; novel insights what is 'function'? hierarchical view inverse method morphology generation - pdf's bias, no L5 neurons possible Maybe use this automatic morphologies to study LFP? eg. single morphology in the population vs many similar but not identical cells
 
 },
   Owner                    = {jkowalski},

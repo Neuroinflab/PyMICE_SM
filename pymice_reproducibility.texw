@@ -8,25 +8,47 @@ import pytz
 import sys
 
 
-def pmVersion():
-    return pmTemplate().format(v=pm.__version__)
+class CiteModule(object):
+    TEMPLATE_REFERENCE = '~\cite{{{ref}}}'
 
-def pmTemplate():
-    return PM_TEMPLATE_HEAD +  pmTemplateTail()
+    def __repr__(self):
+        return self._version()
 
-def isPmVersionKnown():
-    return pm.__version__ in PM_KNOWN_VERSIONS
+    def _version(self):
+        return self.TEMPLATE.format(v=self.MODULE.__version__,
+                                    ref=self._reference())
 
-PM_TEMPLATE_HEAD = '\emph{{PyMICE}} v.~{v}'
-PM_KNOWN_VERSIONS = {'0.2.3', '0.2.4', '0.2.5', '1.0.0'}
+    def _reference(self):
+        try:
+            ref = self.VERSION_REFERENCE[self.MODULE.__version__]
 
-def pmTemplateTail():
-  return '~\cite{{pymice{v}}}' if isPmVersionKnown() else ''
+        except KeyError:
+            return ''
+
+        return self.TEMPLATE_REFERENCE.format(ref=ref)
+
+class CitePyMICE(CiteModule):
+    MODULE = pm
+    TEMPLATE = '\emph{{PyMICE}} v.~{v}{ref}'
+    VERSION_REFERENCE = {'0.2.3': 'pymice0.2.3',
+                         '0.2.4': 'pymice0.2.4',
+                         '0.2.5': 'pymice0.2.5',
+                         '1.0.0': 'pymice1.0.0',
+                         '1.1.0': 'pymice1.1.0',
+                         '1.1.1': 'pymice1.1.1'}
+
+class CitePweave(CiteModule):
+    MODULE = pweave
+    TEMPLATE = '\emph{{Pweave}} tool~\cite{{Pweave}} v.~{v}{ref}'
+    VERSION_REFERENCE = {'0.23.1': 'matti_pastell_2016_44683',
+                         '0.23.2': 'matti_pastell_2016_44818',
+                         '0.24': 'matti_pastell_2016_45054',
+                         '0.25': 'matti_pastell_2016_50174'}
 
 @
-All presented results may be reproduced with the \emph{Pweave} tool~\cite{Pweave,matti_pastell_2016_44683}
-v.~<%= pweave.__version__ %>, an interpreter of \emph{Python} programming
-language v.~<%= '.'.join(map(str, sys.version_info[:3])) %>, <%= pmVersion() %>,
+All presented results may be reproduced with the <%= CitePweave() %>,
+an interpreter of \emph{Python} programming
+language v.~<%= '.'.join(map(str, sys.version_info[:3])) %>, <%= CitePyMICE() %>,
 \emph{NumPy} v.~<%= np.__version__ %>,
 \emph{matplitlib} v.~<%= matplotlib.__version__ %>, \emph{dateutil} v.~<%= dateutil.__version__ %>
 and \emph{pytz} v.~<%= pytz.__version__ %>.~\cite{Wilson2014}
