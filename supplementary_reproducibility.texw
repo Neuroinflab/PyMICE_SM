@@ -39,7 +39,7 @@ class CitePyMICE(CiteModule):
 
 class CitePweave(CiteModule):
     MODULE = pweave
-    TEMPLATE = '\emph{{Pweave}} tool~\cite{{Pweave}} v.~{v}{ref}'
+    TEMPLATE = '\emph{{Pweave}}~\cite{{Pweave}} v.~{v}{ref}'
     VERSION_REFERENCE = {'0.23.1': 'matti_pastell_2016_44683',
                          '0.23.2': 'matti_pastell_2016_44818',
                          '0.24': 'matti_pastell_2016_45054',
