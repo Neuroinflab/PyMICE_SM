@@ -94,7 +94,7 @@ Analyzer (v.~2.11.0.0) omits some of the nosepokes present in the raw data,
 leading to potentially significant underestimation of the measured quantities (the worst
 case in the data we analyzed was <%= licksMissing %> licks of a single mouse missing within a <%= asHours(end - start) %>-hour
 long period of a liquid consumption study -- $<%= licksMissingRelativePercentage %>\%$ of the total
-recorded number). % MarysiaSS/2014-09-11 14.13.34.zip  2014-09-11 22:00:00-08:00 -- 2014-09-12 04:00:00-08:00  Animal: 9
+recorded number). 
 
 The PyMICE library also facilitates automatic validation of the loaded
 data. A collection of auxiliary classes is provided for that purpose.

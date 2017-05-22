@@ -232,7 +232,6 @@ with DecoratedAxes() as ax:
     ax.plotGroupAverages(performance)
 @
 
-%htbp
 \begin{figure*}
   \includegraphics[width=0.75\textwidth]{figures/example2_Figure_1.pdf}
   \caption{

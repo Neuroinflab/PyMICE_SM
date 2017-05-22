@@ -90,9 +90,6 @@ To calculate the performance of a mouse during a phase, we check
 In the IntelliCage experiment design the rewarded corner was marked as
 `correct'. Visits to the `correct' corner have positive value of the
 \code{.CornerCondition} attribute of the \code{Visit} object.
-%\\
-%Similarly as in the previous example, the `correct' corner in the \code{NPA}
-%phases should be seen as `will-be rewarded'.
 
 <<echo=False, results='hidden'>>=
 def isToCorrectCorner(visit):
@@ -207,7 +204,6 @@ with DecoratedAxes() as ax:
         ax.plotGroupAverages(performance, group)
 @
 
-%htbp
 \begin{figure*}
   \includegraphics[width=0.75\textwidth]{figures/example3_Figure_1.pdf}
   \caption{
