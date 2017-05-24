@@ -1,4 +1,4 @@
-In this example we analyze results of a place preference experiment
+In this example, we analyze results of a place preference experiment
 described in detail in~\cite{Puscian:2014cu}. Similarly as in Example 2, 
 the experiment comprised several adaptation and learning phases, in 
 which the mice could access either all or just selected drinking bottles. 
@@ -14,8 +14,8 @@ and in the final figure obtained in this example (\fig{figurePlotReplication})
 we show two learning curves
 from Fig.~3A in~\cite{Puscian:2014cu} (cohorts A and B). 
 Each curve represents an average performance (defined as a fraction
-of visits to the rewarded corner) of a cohort of mice in 8 subsequent,
-12-hour long phases of the experiment. 
+of visits to the rewarded corner) of a cohort of mice in eight subsequent,
+12-h-long phases of the experiment. 
 
 As the code here is quite similar to the code of the previous
 example, we will focus on the major differences between the examples. 
@@ -90,12 +90,9 @@ def calculatePerformance(visits):
 
 To calculate the performance of a mouse during a phase, we check
 -- for each visit -- whether the visit was to the rewarded corner.
-In the IntelliCage experiment design the rewarded corner was marked as
+In the IntelliCage experiment design, the rewarded corner was marked as
 `correct'. Visits to the `correct' corner have positive value of the
 \code{.CornerCondition} attribute of the \code{Visit} object.
-%\\
-%Similarly as in the previous example, the `correct' corner in the \code{NPA}
-%phases should be seen as `will-be rewarded'.
 
 <<echo=False, results='hidden'>>=
 def isToCorrectCorner(visit):
@@ -210,15 +207,14 @@ with DecoratedAxes() as ax:
     ax.plotGroupAverages(performance, group)
 @
 
-%htbp
 \begin{figure*}
   \includegraphics[width=0.75\textwidth]{figures/example3_Figure_1.pdf}
   \caption{
     {\bf  Place preference learning of two cohorts of C57BL\/6 mice in 
     an IntelliCage experiment.} 
     The plot presents the cohort-averaged percentage of visits 
-    to a rewarded corner during consecutive phases, each lasting 12 hours. 
-    During the place preference phases (Place Pref) 
+    to a rewarded corner during consecutive phases, each lasting 12 h.
+    During the place preference phases (Place Pref), 
     each mouse is provided access to sweetened water
     in one selected corner of the IntelliCage. The fraction of visits to that 
     corner is close to the chance level (25\%) during 

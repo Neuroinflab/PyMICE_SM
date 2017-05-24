@@ -1,14 +1,14 @@
 The previous example is a simplified version of an analysis performed to assess place
 memory during the discrimination training, as described in~\citeA{Knapska:2013dj}.
-In this example we present the analysis in more detail, including the 
+In this example, we present the analysis in more detail, including the 
 estimation of how the mice performance in the discrimination task
 changed over time.
 
-The experimental setup was the following: during the first several days of the experiment mice were adapted to the cage. In this phase water was
+The experimental setup was the following: during the first several days of the experiment, the mice were adapted to the cage. In this phase, water was
 freely available in all corners, at both sides of each corner, and the doors to the bottles were open. Next, in nosepoke adaptation (\emph{NPA}) phase of the
-experiment mice had to perform nosepokes to access the water bottles. The next phase was place preference learning (\emph{PP}). In this phase every mouse
+experiment, mice had to perform nosepokes to access the water bottles. The next phase was place preference learning (\emph{PP}). In this phase, every mouse
 could access bottles in one corner only. The mice were assigned to different corners as evenly as possible to prevent crowding and learning interference. The final experimental phase
-was the discrimination task (\emph{DISC}). In this phase the mice were presented with two bottles in the same corner to which they were assigned during the \emph{PP} phase. However, in contrast to the \emph{PP} phase, one bottle contained tap water, and the other 10\% sucrose solution (highly motivating reward). As previously, during each visit the access was granted to both bottles. The percentage of visits in which the first nosepoke was performed to the bottle containing reward was calculated as a measure of memory.
+was the discrimination task (\emph{DISC}). In this phase, the mice were presented with two bottles in the same corner to which they were assigned during the \emph{PP} phase. However, in contrast to the \emph{PP} phase, one bottle contained tap water, and the other 10\% sucrose solution (highly motivating reward). As previously, during each visit the access was granted to both bottles. The percentage of visits in which the first nosepoke was performed to the bottle containing reward was calculated as a measure of memory.
 
 We start by loading the data. 
 Note that some technical details not crucial for
@@ -66,9 +66,9 @@ PHASES = ['PP dark',     'PP light',
 @
 \end{samepage}
 
-To analyze the data we define a function \code{getPerformanceMatrix()}
+To analyze the data, we define a function \code{getPerformanceMatrix()},
 which returns a matrix of performance (defined as the fraction of first
-nosepokes in the accessible corner which are performed to the rewarded side)
+nosepokes in the accessible corner, which are performed to the rewarded side)
 of all mice in the system. Each row in this matrix contains the performance data 
 of one mouse, and each column corresponds to one phase of the experiment for all mice.
 
@@ -80,7 +80,7 @@ def getPerformanceMatrix():
 @
 \end{samepage}
 
-For every mouse the the \code{getPerformanceCurve()} function is called to
+For every mouse, the \code{getPerformanceCurve()} function is called to
 create a row corresponding to the performance of that mouse across subsequent phases.
 
 \begin{samepage}
@@ -92,7 +92,7 @@ def getPerformanceCurve(mouse):
 \end{samepage}
 
 We use the \code{getPerformance()} function to create a list of the mouse's
-performance measures (fraction of first nosepokes in the accessible corner
+performance measures (fraction of first nosepokes in the accessible corner,
 which are performed to the rewarded side) in subsequent phases.
 
 \begin{samepage}
@@ -112,11 +112,11 @@ def isToCorrectCorner(visit):
 @
 \end{samepage}
 
-In the \code{getPerformance()} function we obtain all visits performed by the
+In the \code{getPerformance()} function, we obtain all visits performed by the
 mouse during the phase. Visits to the accessible corner are passed to the
 \code{calculatePerformance()} function for further analysis. It is easy to
 filter the visits -- in the IntelliCage experiment design the accessible corner
-was marked as `correct'. Thus visits to the corner have positive value of the
+was marked as `correct'. Thus, visits to the corner have positive value of the
 \code{.CornerCondition} attribute of the \code{Visit} object.
 
 \begin{samepage}
@@ -133,16 +133,16 @@ def isToCorrectSide(nosepoke):
 @
 \end{samepage}
 
-To calculate the performance we check whether the first nosepoke of every visit
+To calculate the performance, we check whether the first nosepoke of every visit
 was to the rewarded side. The rewarded side was marked as `correct'
-in the experiment design. Thus nosepokes to the correct side have positive value of the
+in the experiment design. Thus, nosepokes to the correct side have positive value of the
 \code{.SideCondition} attribute of the respective \code{Nosepoke} object.
 The side which was rewarded in \emph{DISC} phases was marked as `correct'
 already during the \emph{PP} phases (when both bottles in a
 corner contained the same liquid), so that the relevant fraction 
 can be easily extracted also from the \emph{PP} phases.\\
 Based on the counts of first nosepokes performed to each of 
-the sides we calculate the success ratio (code omitted here).
+the sides, we calculate the success ratio (code omitted here).
 
 <<echo=False, results='hidden'>>=
 def successRatio(successes):
@@ -240,7 +240,6 @@ with DecoratedAxes() as ax:
   ax.plotGroupAverages(performance)
 @
 
-%htbp
 \begin{figure*}
   \includegraphics[width=0.75\textwidth]{figures/example2_Figure_1.pdf}
   \caption{

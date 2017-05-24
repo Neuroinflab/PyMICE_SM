@@ -1,4 +1,4 @@
-In this example we illustrate the possibility of programming 
+In this example, we illustrate the possibility of programming 
 new data analysis methods in Python. 
 We are going to investigate durations of intervals between 
 subsequent visits of mice to a corner. 
@@ -15,7 +15,7 @@ or imitation.
 We want to plot histograms of interval durations
 for each corner separately, and we restrict the analysis to just one phase: \emph{Place Pref 3 dark}. 
 Such analysis would be very hard or impossible to perform using Analyzer, and requires the use of some kind of programming 
-language, which is the main reason we include it in in the paper. Below we show that the analysis in 
+language, which is the main reason we include it in the paper. Below we show that the analysis in 
 Python using PyMICE is quite straightforward.
 
 <<echo=False,results='hidden'>>=
@@ -114,7 +114,7 @@ visits = data.getVisits(start=start, end=end,
 
 This list contains visits performed to all corners of the cage. 
 Next we need to extract subsequences of visits
-performed \textbf{to the same corner}, in the same cage.
+performed \textbf{to the same corner} in the same cage.
 
 \begin{samepage}
 <<>>=

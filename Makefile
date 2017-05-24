@@ -21,7 +21,7 @@ STYLES=spmpsci.bst svglov3.clo svjour3.cls
 C57_AB=C57_AB C57_AB/2012-08-28\ 13.44.51.zip C57_AB/2012-08-28\ 15.33.58.zip C57_AB/2012-08-31\ 11.46.31.zip C57_AB/2012-08-31\ 11.58.22.zip C57_AB/timeline.ini
 FVB=FVB FVB/2016-07-20\ 10.11.11.zip FVB/timeline.ini
 DATA=${C57_AB} ${FVB} demo.zip
-TEMPORARY_FILES=COPYING LICENSE example.eps article.aux article.bbl article.blg article.log article.out supplementary_reproducibility.tex supplementary_materials.aux supplementary_materials.bbl supplementary_materials.blg supplementary_materials.log supplementary_materials.out supplementary_materials.toc
+TEMPORARY_FILES=COPYING LICENSE article.aux article.bbl article.blg article.log article.out supplementary_reproducibility.tex supplementary_materials.aux supplementary_materials.bbl supplementary_materials.blg supplementary_materials.log supplementary_materials.out supplementary_materials.toc
 MISSING_NP_DATA=2014-09-11\ 14.13.34.zip
 SUPPLEMENTARY_MATERIALS=supplementary_materials.pdf article_source.zip ${EXAMPLES} ${DATA}
 
