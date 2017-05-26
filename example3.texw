@@ -1,24 +1,24 @@
 In this example, we analyze results of a place preference experiment
-described in detail in~\cite{Puscian:2014cu}. Similarly as in Example 2, 
-the experiment comprised several adaptation and learning phases, in 
-which the mice could access either all or just selected drinking bottles. 
-In the nosepoke adaptation phase (\emph{NPA}) all the mice had access to tap water in all corners. In order to obtain water, the mice were required to open the door by performing a nosepoke. 
+described in detail in~\cite{Puscian:2014cu}. Similarly as in Example 2,
+the experiment comprised several adaptation and learning phases, in
+which the mice could access either all or just selected drinking bottles.
+In the nosepoke adaptation phase (\emph{NPA}) all the mice had access to tap water in all corners. In order to obtain water, the mice were required to open the door by performing a nosepoke.
 Next, in the place preference learning phase (\emph{Place Pref}), the access
 to the drinking bottles was (as in the previous example) restricted to just one corner for each mouse.
 Tap water was replaced with 10\% sucrose solution to increase the motivation of the mice
 to seek access to the drinking bottles.  We are interested in how the percentage of visits to the
-rewarded corner changed over time. 
+rewarded corner changed over time.
 
 The data used here are a subset of data presented in~\cite{Puscian:2014cu},
-and in the final figure obtained in this example (\fig{figurePlotReplication}) 
+and in the final figure obtained in this example (\fig{figurePlotReplication})
 we show two learning curves
-from Fig.~3A in~\cite{Puscian:2014cu} (cohorts A and B). 
+from Fig.~3A in~\cite{Puscian:2014cu} (cohorts A and B).
 Each curve represents an average performance (defined as a fraction
 of visits to the rewarded corner) of a cohort of mice in eight subsequent,
-12-h-long phases of the experiment. 
+12-h-long phases of the experiment.
 
 As the code here is quite similar to the code of the previous
-example, we will focus on the major differences between the examples. 
+example, we will focus on the major differences between the examples.
 We start by loading the \code{data}, \code{timeline}
 and \code{PHASES} objects from the relevant  dataset (different than in Example 2;
 code omitted here, the full code is available
@@ -46,7 +46,7 @@ PHASES = ['NPA 2 dark', 'NPA 2 light',
 @
 
 As in the previous example, we define a function returning a performance
-matrix (defined here as the fraction of visits to the rewarded corner): 
+matrix (defined here as the fraction of visits to the rewarded corner):
 \code{getGroupPerformanceMatrix()}.
 
 \begin{samepage}
@@ -101,8 +101,8 @@ def successRatio(successes):
 
 With all the functions defined, we obtain a
 performance matrix and plot it averaged across mice (\fig{figurePlotReplication})
-for each cohort (groups C57A and C57B) separately. Note that analyzing 
-several cohorts reduces to a loop over the cohorts included in the 
+for each cohort (groups C57A and C57B) separately. Note that analyzing
+several cohorts reduces to a loop over the cohorts included in the
 analysis.
 
 
@@ -128,7 +128,7 @@ class DecoratedAxes(object):
         self.__setUpAxisX()
         self.__plotDarkPhasesInBackground()
         self.__plotPercentReferenceLines()
-        
+
         ax.plotGroupAverages = plotGroupAverages.__get__(ax, ax.__class__)
 
     def __setUpAxisY(self):
@@ -137,7 +137,6 @@ class DecoratedAxes(object):
         self.__ax.yaxis.set_ticks_position('none')
         self.__ax.yaxis.set_major_formatter(mtick.FormatStrFormatter("%.0f%%"))
         self.__ax.set_yticks(self.yticks)
-        
 
     def __setUpAxisX(self):
         tzone = pytz.timezone('CET')
@@ -159,7 +158,6 @@ class DecoratedAxes(object):
                 start, end = getTimeBounds(phase)
                 self.__ax.axvspan(start, end, color='#E0E0E0')
 
-        
     def __exit__(self, type, value, traceback):
         self.finish()
 
@@ -168,13 +166,13 @@ class DecoratedAxes(object):
         self.__ax.autoscale_view()
         self.__fig.autofmt_xdate()
         plt.show()
-    
+
 def getPhaseMidtime(phase):
     return getTimeBounds(phase).mean()
 
 def getSem(X):
     return X.std(axis=0) / np.sqrt(np.logical_not(X.mask).sum(axis=0))
-  
+
 GRUOP_COLORS = {'C57 A': '#00c0ff',
                 'C57 B': '#00aa00'}
 
@@ -207,18 +205,18 @@ with DecoratedAxes() as ax:
 \begin{figure*}
   \includegraphics[width=0.75\textwidth]{figures/example3_Figure_1.pdf}
   \caption{
-    {\bf  Place preference learning of two cohorts of C57BL\/6 mice in 
-    an IntelliCage experiment.} 
-    The plot presents the cohort-averaged percentage of visits 
+    {\bf  Place preference learning of two cohorts of C57BL\/6 mice in
+    an IntelliCage experiment.}
+    The plot presents the cohort-averaged percentage of visits
     to a rewarded corner during consecutive phases, each lasting 12 h.
-    During the place preference phases (Place Pref), 
+    During the place preference phases (Place Pref),
     each mouse is provided access to sweetened water
-    in one selected corner of the IntelliCage. The fraction of visits to that 
-    corner is close to the chance level (25\%) during 
-    the NPA (nosepoke adaptation) phases when 
+    in one selected corner of the IntelliCage. The fraction of visits to that
+    corner is close to the chance level (25\%) during
+    the NPA (nosepoke adaptation) phases when
     mice are provided access to plain water in all corners, and
-    increases over time after the reward (sweetened water) is introduced. 
-    Error bars are standard error of the mean. 
+    increases over time after the reward (sweetened water) is introduced.
+    Error bars are standard error of the mean.
   }
   \label{figurePlotReplication}
 \end{figure*}

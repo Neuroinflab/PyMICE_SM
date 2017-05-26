@@ -44,7 +44,6 @@ class CitePweave(CiteModule):
                          '0.23.2': 'matti_pastell_2016_44818',
                          '0.24': 'matti_pastell_2016_45054',
                          '0.25': 'matti_pastell_2016_50174'}
-
 @
 All presented results may be reproduced with the <%= CitePweave() %>,
 an interpreter of \emph{Python} programming

@@ -1,6 +1,6 @@
 The previous example is a simplified version of an analysis performed to assess place
 memory during the discrimination training, as described in~\citeA{Knapska:2013dj}.
-In this example, we present the analysis in more detail, including the 
+In this example, we present the analysis in more detail, including the
 estimation of how the mice performance in the discrimination task
 changed over time.
 
@@ -10,7 +10,7 @@ experiment, mice had to perform nosepokes to access the water bottles. The next 
 could access bottles in one corner only. The mice were assigned to different corners as evenly as possible to prevent crowding and learning interference. The final experimental phase
 was the discrimination task (\emph{DISC}). In this phase, the mice were presented with two bottles in the same corner to which they were assigned during the \emph{PP} phase. However, in contrast to the \emph{PP} phase, one bottle contained tap water, and the other 10\% sucrose solution (highly motivating reward). As previously, during each visit the access was granted to both bottles. The percentage of visits in which the first nosepoke was performed to the bottle containing reward was calculated as a measure of memory.
 
-We start by loading the data. 
+We start by loading the data.
 Note that some technical details not crucial for
 understanding the example (like importing the libraries) are hidden. The full
 code is available at \url{https://github.com/Neuroinflab/PyMICE_SM/blob/examples/example2.py}.
@@ -29,7 +29,7 @@ import pymice as pm
 
 @
 
-\begin{samepage} 
+\begin{samepage}
 <<echo=True, results='hidden'>>=
 data = pm.Loader('FVB/2016-07-20 10.11.11.zip')
 @
@@ -37,7 +37,7 @@ data = pm.Loader('FVB/2016-07-20 10.11.11.zip')
 
 Next, we need to know the start- and end-points of the experimental phases we are interested in.
 We defined these phases in an experiment timeline
-file. The format of this file 
+file. The format of this file
 is a derivative of the \emph{INI} format.
 The necessary information required about a phase are: its name (\emph{PP dark} in the following example), boundaries (\code{start} and \code{end}
 properties) and timezone of the boundaries (\code{tzinfo} property):
@@ -69,7 +69,7 @@ PHASES = ['PP dark',     'PP light',
 To analyze the data, we define a function \code{getPerformanceMatrix()},
 which returns a matrix of performance (defined as the fraction of first
 nosepokes in the accessible corner, which are performed to the rewarded side)
-of all mice in the system. Each row in this matrix contains the performance data 
+of all mice in the system. Each row in this matrix contains the performance data
 of one mouse, and each column corresponds to one phase of the experiment for all mice.
 
 \begin{samepage}
@@ -131,9 +131,9 @@ in the experiment design. Thus, nosepokes to the correct side have positive valu
 \code{.SideCondition} attribute of the respective \code{Nosepoke} object.
 The side which was rewarded in \emph{DISC} phases was marked as `correct'
 already during the \emph{PP} phases (when both bottles in a
-corner contained the same liquid), so that the relevant fraction 
+corner contained the same liquid), so that the relevant fraction
 can be easily extracted also from the \emph{PP} phases.\\
-Based on the counts of first nosepokes performed to each of 
+Based on the counts of first nosepokes performed to each of
 the sides, we calculate the success ratio (code omitted here).
 
 <<echo=False, results='hidden'>>=
@@ -142,7 +142,7 @@ def successRatio(successes):
 @
 
 With all the functions defined, we obtain the performance matrix and plot it
-averaged across mice in \fig{figureSideDiscrimination} (plotting code omitted here). 
+averaged across mice in \fig{figureSideDiscrimination} (plotting code omitted here).
 
 <<echo=False,results='hidden',fig=True,include=False,name='Figure'>>=
 def getTimeBounds(phases):
@@ -162,7 +162,7 @@ class DecoratedAxes(object):
         self.__setUpAxisX()
         self.__plotDarkPhasesInBackground()
         self.__plotPercentReferenceLines()
-        
+
         ax.plotGroupAverages = plotGroupAverages.__get__(ax, ax.__class__)
         return ax
 
@@ -172,7 +172,6 @@ class DecoratedAxes(object):
         self.__ax.yaxis.set_ticks_position('none')
         self.__ax.yaxis.set_major_formatter(mtick.FormatStrFormatter("%.0f%%"))
         self.__ax.set_yticks(self.yticks)
-        
 
     def __setUpAxisX(self):
         tzone = pytz.timezone('CET')
@@ -193,12 +192,11 @@ class DecoratedAxes(object):
                 start, end = getTimeBounds(phase)
                 self.__ax.axvspan(start, end, color='#E0E0E0')
 
-        
     def __exit__(self, type, value, traceback):
         self.__ax.autoscale_view()
         self.__fig.autofmt_xdate()
         plt.show()
-    
+
 def getPhaseMidtime(phase):
     return getTimeBounds(phase).mean()
 
@@ -207,7 +205,7 @@ def getSEM(X):
 
 def getCI95(X):
     return 1.96 * getSEM(X)
-  
+
 # It is a good practice to plot error bars as confidence intervals instead of
 # SEM\cite{Cumming2014newStat}
 def plotGroupAverages(ax, series):
@@ -227,7 +225,7 @@ def plotGroupAverages(ax, series):
 
 with DecoratedAxes() as ax:
     ax.xaxis.set_major_formatter(timeline)
-    
+
     performance = getPerformanceMatrix()
     ax.plotGroupAverages(performance)
 @
@@ -235,7 +233,7 @@ with DecoratedAxes() as ax:
 \begin{figure*}
   \includegraphics[width=0.75\textwidth]{figures/example2_Figure_1.pdf}
   \caption{
-    {\bf Reward-motivated discrimination learning in FVB mice (n=<%=len(data.getMice())%>).} 
+    {\bf Reward-motivated discrimination learning in FVB mice (n=<%=len(data.getMice())%>).}
     The chart depicts efficient learning of reward position, as measured by the
     percentage of first nosepokes made to the bottle containing reward right after
     entering the corner.
