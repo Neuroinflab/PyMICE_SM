@@ -3,35 +3,35 @@ experimental protocols and thus explore behavioral phenomena inaccessible in
 classic, non-automated behavioral tests. However, in many cases, the analysis of
 data from such experiments poses a serious challenge. First,
 in some instances, manual analysis performed in the manufacturer's software
-(Analyzer) would simply take too much time. For instance, analyzing data from  
+(Analyzer) would simply take too much time. For instance, analyzing data from
 experiments in which one is interested in a particular time frame with respect
-to a stimulus presented in the corner would be extremely time-consuming. 
-If, for example, the availability of a reward is signaled by LEDs in a 
+to a stimulus presented in the corner would be extremely time-consuming.
+If, for example, the availability of a reward is signaled by LEDs in a
 corner, and the diodes are only lit up in a specific time frame, then one would
 be naturally interested in, say, number of nosepokes performed before, during, and
 after the visual stimulus. Such information can-not be extracted from Analyzer
 in an automated way, and therefore the researcher would have to inspect each of the
-hundreds or thousands of visits manually. Another case 
-in which it is hard to obtain the relevant data 
-directly from Analyzer are 
+hundreds or thousands of visits manually. Another case
+in which it is hard to obtain the relevant data
+directly from Analyzer are
 protocols assessing impulsiveness of individual subjects by
 employing progressive ratio of behaviors (e.g., nosepokes) needed to obtain
 a reward. On the other hand, such protocols are useful
-for modeling symptoms of e.g. addiction~\cite{Radwanska:2012fd,Mijakowska:2015io}. 
+for modeling symptoms of e.g. addiction~\cite{Radwanska:2012fd,Mijakowska:2015io}.
 
-A solution to this problem is to write custom software for automated data analysis. 
-PyMICE is a free and open-source library that makes it easier 
-to access and analyze IntelliCage data in the Python programming language. 
+A solution to this problem is to write custom software for automated data analysis.
+PyMICE is a free and open-source library that makes it easier
+to access and analyze IntelliCage data in the Python programming language.
 
-Moreover, PyMICE is more suitable than the Analyzer software when it comes to 
-the analysis of more sophisticated experimental designs~\cite{Endo:2011bs,Knapska:2013dj}. 
-Namely, it allows for the comprehensive analysis of variables than may not be computed in Analyzer. 
-Publication of \citeauthor{Knapska:2013dj} from \citeyearNP{Knapska:2013dj} is an example 
-of how highly specified behavioral assessment -- in this case choosing between nosepoking to reward vs. 
-to a neutral stimulus, performed right after entering a corner -- might be implemented 
+Moreover, PyMICE is more suitable than the Analyzer software when it comes to
+the analysis of more sophisticated experimental designs~\cite{Endo:2011bs,Knapska:2013dj}.
+Namely, it allows for the comprehensive analysis of variables than may not be computed in Analyzer.
+Publication of \citeauthor{Knapska:2013dj} from \citeyearNP{Knapska:2013dj} is an example
+of how highly specified behavioral assessment -- in this case choosing between nosepoking to reward vs.
+to a neutral stimulus, performed right after entering a corner -- might be implemented
 to identify neuronal circuits underlying specific cognitive deficits.
-The analysis in that paper was done manually, which required substantial effort. 
-PyMICE facilitates drawing such conclusions by enabling experimenters 
+The analysis in that paper was done manually, which required substantial effort.
+PyMICE facilitates drawing such conclusions by enabling experimenters
 with an easy access to highly specific parameters describing subjects' behavioral performance.
 
 For those reasons, we argue that PyMICE
@@ -39,7 +39,7 @@ is a convenient solution to otherwise time-consuming data analysis and -- more
 importantly -- a valuable tool for in-depth analysis of previously inaccessible
 elements of murine behavior.
 
-One of the advantages of using the Python programming language is that 
+One of the advantages of using the Python programming language is that
 a well-written Python program is readable to users. In fact, readability
 is stressed as one of the core Python principles~\cite{zenOfPython}, which we
 have strived to follow in the design of PyMICE.
@@ -52,8 +52,8 @@ property of a \code{Nosepoke} object (see \fig{apiScheme}) translating integer v
 \code{.Side} attribute to \code{\textquotesingle{}left\textquotesingle} and \code{\textquotesingle{}right\textquotesingle} text strings.
 Manipulating such structures is straightforward and natural, therefore shifting
 the programmer's focus from technical details of the file format to the
-data analysis itself. 
-The data structures are readonly objects\footnote{The two exceptions are: the 
+data analysis itself.
+The data structures are readonly objects\footnote{The two exceptions are: the
 \code{Animal} semi-mutable class (the \code{.Sex} attribute might be updated
 if \code{None}; the \code{.Notes} attribute might be extended) and the
 \code{Group} mutable class.}, which supports the functional programming paradigm.
@@ -84,17 +84,17 @@ def asHours(timedelta):
   return int(round(timedelta.total_seconds() / 3600))
 @
 PyMICE operates on \emph{ZIP} archives saved by the IntelliCage software controlling
-the experiment. Data from several recording sessions may be easily merged and analyzed 
-together. 
-All visits and nosepokes present in the raw data are loaded 
+the experiment. Data from several recording sessions may be easily merged and analyzed
+together.
+All visits and nosepokes present in the raw data are loaded
 and presented to the user without any implicit filtering. Note that in some cases this
 leads to different results than those obtained with the Analyzer software bundled
-with the IntelliCage. One specific case we are aware of is that 
+with the IntelliCage. One specific case we are aware of is that
 Analyzer (v.~2.11.0.0) omits some of the nosepokes present in the raw data,
 leading to potentially significant underestimation of the measured quantities (the worst
 case in the data we analyzed was <%= licksMissing %> licks of a single mouse missing within a <%= asHours(end - start) %>-h-long
 period of a liquid consumption study -- $<%= licksMissingRelativePercentage %>\%$ of the total
-recorded number). 
+recorded number).
 
 The PyMICE library also facilitates automatic validation of the loaded
 data. A collection of auxiliary classes is provided for that purpose.
@@ -107,7 +107,7 @@ abnormal situations may be easily extended.
 \begin{figure*}
   \includegraphics[width=0.75\textwidth]{figures/apiScheme.pdf}
   \caption{
-    {\bf Visualization of PyMICE data structures.} 
+    {\bf Visualization of PyMICE data structures.}
     To investigate visit events recorded by the IntelliCage system, a \code{list}
     of \code{Visit} structures is obtained from the \code{data} object by the first
     command (top right panel). To focus on a third visit, the next command selects

@@ -1,16 +1,16 @@
 This example shows how to obtain the number of visits in which a mouse
-performed the first nosepoke to the left side or the right side of the corner. 
+performed the first nosepoke to the left side or the right side of the corner.
 
-In the first line, the library is imported. We use \code{pm} as an abbreviated name of the library. 
+In the first line, the library is imported. We use \code{pm} as an abbreviated name of the library.
 In the second line, the example data are loaded from a single IntelliCage file.
 In the third line,
 a list of all visits of a mouse named `Jerry' is obtained.\footnote{The mice are referred to by names defined in the design of IntelliCage experiment, not by the RFID tag numbers.} Note that a \code{list} of names is passed as an argument.
 
-Next, the first nose poke is selected from every visit \code{v} (if any nosepoke was made during that visit). Note that the condition \code{if v.Nosepokes} is met if the list \code{v.Nosepokes} is not empty. 
+Next, the first nose poke is selected from every visit \code{v} (if any nosepoke was made during that visit). Note that the condition \code{if v.Nosepokes} is met if the list \code{v.Nosepokes} is not empty.
 
 The side the mouse poked is obtained as \code{nosepoke.Door} in the fifth line of the code. This returns either \code{\textquotesingle{}left\textquotesingle} or \code{\textquotesingle{}right\textquotesingle}, thus disregarding the information about the corner in which the nosepoke was performed. 
 
-Finally, in the last line, the number of visits with the first nosepoke to the left and the right side is calculated and displayed. 
+Finally, in the last line, the number of visits with the first nosepoke to the left and the right side is calculated and displayed.
 
 \begin{samepage}
 <<term=True, results='verbatim'>>=

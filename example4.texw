@@ -1,21 +1,21 @@
-In this example, we illustrate the possibility of programming 
-new data analysis methods in Python. 
-We are going to investigate durations of intervals between 
-subsequent visits of mice to a corner. 
+In this example, we illustrate the possibility of programming
+new data analysis methods in Python.
+We are going to investigate durations of intervals between
+subsequent visits of mice to a corner.
 The assumption here is that the distribution of such intervals
-is a measure of  
+is a measure of
 interactions between the mice. In this example we will just calculate the
-measure without discussing it much, but we believe that such 
+measure without discussing it much, but we believe that such
 measure, or a variant of it, would be useful in studying social behaviors
-or social structure of the group. In particular, one could study which 
+or social structure of the group. In particular, one could study which
 mice follow which, and therefore look into potential modulation
-of learning or cognitive abilities by such behaviors as following 
-or imitation. 
+of learning or cognitive abilities by such behaviors as following
+or imitation.
 
 We want to plot histograms of interval durations
-for each corner separately, and we restrict the analysis to just one phase: \emph{Place Pref 3 dark}. 
-Such analysis would be very hard or impossible to perform using Analyzer, and requires the use of some kind of programming 
-language, which is the main reason we include it in the paper. Below we show that the analysis in 
+for each corner separately, and we restrict the analysis to just one phase: \emph{Place Pref 3 dark}.
+Such analysis would be very hard or impossible to perform using Analyzer, and requires the use of some kind of programming
+language, which is the main reason we include it in the paper. Below we show that the analysis in
 Python using PyMICE is quite straightforward.
 
 <<echo=False,results='hidden'>>=
@@ -103,8 +103,8 @@ class DecoratedAxes(object):
 
 We begin by selecting all visits performed during the phase.
 The \code{order} parameter of the \code{.getVisits()} method
-makes the returned sequence ordered with respect to the 
-\code{.Start} attribute. 
+makes the returned sequence ordered with respect to the
+\code{.Start} attribute.
 <<echo=True,results='hidden'>>=
 start, end = timeline.getTimeBounds(
                            'Place Pref 3 dark')
@@ -112,7 +112,7 @@ visits = data.getVisits(start=start, end=end,
                         order='Start')
 @
 
-This list contains visits performed to all corners of the cage. 
+This list contains visits performed to all corners of the cage.
 Next we need to extract subsequences of visits
 performed \textbf{to the same corner} in the same cage.
 
@@ -126,7 +126,7 @@ def getSubsequence(visits, cage, corner):
 
 Since the order of the subsequence is preserved, it is then easy to determine
 intervisit intervals.
- 
+
 \begin{samepage}
 <<>>=
 def getIntervisitIntervals(visits):
@@ -156,7 +156,7 @@ with DecoratedAxes() as axes:
 \begin{figure*}
   \includegraphics[width=0.75\textwidth]{figures/example4_Figure_1.pdf}
   \caption{
-    {\bf Frequencies of intervisit intervals in the analyzed phase.} 
+    {\bf Frequencies of intervisit intervals in the analyzed phase.}
     Histograms are plotted for each corner of each cage separately.
     The bins are equally spaced in a logarithmic scale.
     The dotted vertical lines represents intervals of one second,
