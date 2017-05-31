@@ -126,7 +126,7 @@ abnormal situations may be easily extended.
 \end{figure*}
 
 
-\begin{table}[!htbp]
+\begin{table*}
 \caption{
 {\bf Data structures.} The data structures represent particular records
 written by the IntelliCage control software. Most fields are represented
@@ -143,7 +143,7 @@ animal & \code{Animal} & \code{.Name}, \code{.Sex}, \code{.Tag} \\ \hline
 group of animals & \code{Group} & \code{.Name}, \code{.Animals} \\ \hline
 \end{tabular}
 \label{tableOfDataStructures}
-\end{table}
+\end{table*}
 
 
 
