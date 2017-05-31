@@ -2,8 +2,8 @@
 %
 %\documentclass{svjour3}                     % onecolumn (standard format)
 %\documentclass[smallcondensed]{svjour3}     % onecolumn (ditto)
-\documentclass[smallextended]{svjour3}       % onecolumn (second format)
-%\documentclass[twocolumn]{svjour3}          % twocolumn
+%\documentclass[smallextended]{svjour3}       % onecolumn (second format)
+\documentclass[twocolumn]{svjour3}          % twocolumn
 %
 \smartqed  % flush right qed marks, e.g. at end of proof
 %
@@ -14,6 +14,7 @@
 \usepackage{upquote,textcomp}
 \usepackage{hyperref}
 \usepackage{apacite}
+\usepackage{microtype}
 %
 \newcommand{\code}[1]{\texttt{#1}}
 \newcommand{\fig}[1]{Fig.~\ref{#1}}
@@ -23,6 +24,8 @@
 \journalname{Behavior Research Methods}
 
 \begin{document}
+\def\verbatim@font{\ttfamily\small}
+\sloppy
 
 \title{PyMICE -- a Python library for analysis of IntelliCage data
 }
