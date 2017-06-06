@@ -1,0 +1,5 @@
+* text=auto
+*.tex text
+*.texw text
+*.bib text
+*.pdf binary
