@@ -120,7 +120,7 @@ abnormal situations may be easily extended.
     \code{.Nosepokes} attribute (a \code{tuple}) must be accessed. The fifth
     command selects the first item (i.e., index $0$) of the \code{tuple}, which is a
     \code{Nosepoke} structure (pink). The last command prints its \code{.Door}
-    property (pale green).
+    property (pale green)
   }
   \label{apiScheme}
 \end{figure*}
@@ -128,9 +128,9 @@ abnormal situations may be easily extended.
 
 \begin{table*}
 \caption{
-{\bf Data structures.} The data structures represent particular records
+{\bf Data structures} The data structures represent particular records
 written by the IntelliCage control software. Most fields are represented
-by attributes of the same or corresponding name.}
+by attributes of the same or corresponding name}
 \begin{tabular}{|p{5cm}|l|l|}
 \hline
 {\bf IntelliCage data entity} & {\bf Data~structure (Python~class)} & {\bf Examples of attributes } \\ \hline

@@ -219,7 +219,7 @@ with DecoratedAxes() as ax:
     the NPA (nosepoke adaptation) phases when
     mice are provided access to plain water in all corners, and
     increases over time after the reward (sweetened water) is introduced.
-    Error bars are standard error of the mean.
+    Error bars are standard error of the mean
   }
   \label{figurePlotReplication}
 \end{figure*}

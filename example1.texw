@@ -23,7 +23,7 @@ firstNps = [v.Nosepokes[0]
 sides = [nosepoke.Door
          for nosepoke in firstNps]
 
-print sides.count('left'), sides.count('right')
+print (sides.count('left'), sides.count('right'))
 @
 \end{samepage}
 

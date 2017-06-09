@@ -160,7 +160,7 @@ with DecoratedAxes() as axes:
     Histograms are plotted for each corner of each cage separately.
     The bins are equally spaced in a logarithmic scale.
     The dotted vertical lines represents intervals of one second,
-    minute and hour (from left to right, respectively).
+    minute and hour (from left to right, respectively)
   }
   \label{figureIntervisitIntervals}
 \end{figure*}
