@@ -9,13 +9,13 @@ to a stimulus presented in the corner would be extremely time-consuming.
 If, for example, the availability of a reward is signaled by LEDs in a
 corner, and the diodes are only lit up in a specific time frame, then one would
 be naturally interested in, say, number of nosepokes performed before, during, and
-after the visual stimulus. Such information can-not be extracted from Analyzer
+after the visual stimulus. Such information cannot be extracted from Analyzer
 in an automated way, and therefore the researcher would have to inspect each of the
 hundreds or thousands of visits manually. Another case
 in which it is hard to obtain the relevant data
 directly from Analyzer are
 protocols assessing impulsiveness of individual subjects by
-employing progressive ratio of behaviors (e.g., nosepokes) needed to obtain
+employing progressive ratio of behaviors (e.g. nosepokes) needed to obtain
 a reward. On the other hand, such protocols are useful
 for modeling symptoms of e.g. addiction~\cite{Radwanska:2012fd,Mijakowska:2015io}.
 

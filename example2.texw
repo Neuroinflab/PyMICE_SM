@@ -8,7 +8,7 @@ The experimental setup was the following: during the first several days of the e
 freely available in all corners, at both sides of each corner, and the doors to the bottles were open. Next, in nosepoke adaptation (\emph{NPA}) phase of the
 experiment, mice had to perform nosepokes to access the water bottles. The next phase was place preference learning (\emph{PP}). In this phase, every mouse
 could access bottles in one corner only. The mice were assigned to different corners as evenly as possible to prevent crowding and learning interference. The final experimental phase
-was the discrimination task (\emph{DISC}). In this phase, the mice were presented with two bottles in the same corner to which they were assigned during the \emph{PP} phase. However, in contrast to the \emph{PP} phase, one bottle contained tap water, and the other 10\% sucrose solution (highly motivating reward). As previously, during each visit the access was granted to both bottles. The percentage of visits in which the first nosepoke was performed to the bottle containing reward was calculated as a measure of memory.
+was the discrimination task (\emph{DISC}). In this phase, the mice were presented with two bottles in the same corner to which they were assigned during the \emph{PP} phase. However, in contrast to the \emph{PP} phase, one bottle contained tap water, and the other contained 10\% sucrose solution (highly motivating reward). As previously, during each visit the access was granted to both bottles. The percentage of visits in which the first nosepoke was performed to the bottle containing reward was calculated as a measure of memory.
 
 We start by loading the data.
 Note that some technical details not crucial for
