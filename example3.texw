@@ -2,7 +2,7 @@ In this example, we analyze results of a place preference experiment
 described in detail in~\cite{Puscian:2014cu}. Similarly as in Example 2,
 the experiment comprised several adaptation and learning phases, in
 which the mice could access either all or just selected drinking bottles.
-In the nosepoke adaptation phase (\emph{NPA}) all the mice had access to tap water in all corners. In order to obtain water, the mice were required to open the door by performing a nosepoke.
+In the nosepoke adaptation phase (\emph{NPA}), all the mice had access to tap water in all corners. In order to obtain water, the mice were required to open the door by performing a nosepoke.
 Next, in the place preference learning phase (\emph{Place Pref}), the access
 to the drinking bottles was (as in the previous example) restricted to just one corner for each mouse.
 Tap water was replaced with 10\% sucrose solution to increase the motivation of the mice

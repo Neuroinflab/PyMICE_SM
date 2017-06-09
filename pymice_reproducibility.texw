@@ -51,3 +51,6 @@ language v.~<%= '.'.join(map(str, sys.version_info[:3])) %>, <%= CitePyMICE() %>
 \emph{NumPy} v.~<%= np.__version__ %>,
 \emph{matplitlib} v.~<%= matplotlib.__version__ %>, \emph{dateutil} v.~<%= dateutil.__version__ %>
 and \emph{pytz} v.~<%= pytz.__version__ %>.~\cite{Wilson2014}
+
+The source code of the paper is available at \url{https://github.com/Neuroinflab/PyMICE\_SM/}.
+Paper compiled from the source code may differ from the journal version because of manual formatting.
